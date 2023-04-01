@@ -9,7 +9,7 @@
  * MinVersion: 2.8
  */
 
-use Zotlabs\Lib\Apps;
+use Core\Lib\Apps;
 
 class Cart_manualcat {
 
@@ -20,23 +20,23 @@ class Cart_manualcat {
     }
 
     static public function load (){
-      Zotlabs\Extend\Hook::register('cart_addon_settings', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::settings',1,1002);
-      Zotlabs\Extend\Hook::register('cart_addon_settings_post', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::settings_post',1,1002);
-      Zotlabs\Extend\Hook::register('cart_myshop_menufilter', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::myshop_menuitems',1,1002);
-      Zotlabs\Extend\Hook::register('cart_myshop_manualcat', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemadmin',1,1002);
-      Zotlabs\Extend\Hook::register('cart_fulfill_manualcat', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::fulfill_manualcat',1,1002);
-      Zotlabs\Extend\Hook::register('cart_cancel_manualcat', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::rollback_manualcat',1,1002);
-      Zotlabs\Extend\Hook::register('cart_get_catalog', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::get_catalog',1,1002);
-      Zotlabs\Extend\Hook::register('cart_filter_catalog_display', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::filter_catalog_display',1,1002);
-      Zotlabs\Extend\Hook::register('cart_post_manualcat_itemedit', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemedit_post',1,1002);
-      Zotlabs\Extend\Hook::register('cart_post_manualcat_itemactivation', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemedit_activation_post',1,1002);
-      Zotlabs\Extend\Hook::register('cart_post_manualcat_itemdeactivation', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemedit_deactivation_post',1,1002);
-      Zotlabs\Extend\Hook::register('cart_submodule_activation', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::module_activation',1,1002);
-      Zotlabs\Extend\Hook::register('cart_order_before_additem_manualcat', 'addon/cart/submodule/manualcat.php', 'Cart_manualcat::filter_before_add',1,1002);
+      Core\Extend\Hook::register('cart_addon_settings', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::settings',1,1002);
+      Core\Extend\Hook::register('cart_addon_settings_post', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::settings_post',1,1002);
+      Core\Extend\Hook::register('cart_myshop_menufilter', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::myshop_menuitems',1,1002);
+      Core\Extend\Hook::register('cart_myshop_manualcat', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemadmin',1,1002);
+      Core\Extend\Hook::register('cart_fulfill_manualcat', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::fulfill_manualcat',1,1002);
+      Core\Extend\Hook::register('cart_cancel_manualcat', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::rollback_manualcat',1,1002);
+      Core\Extend\Hook::register('cart_get_catalog', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::get_catalog',1,1002);
+      Core\Extend\Hook::register('cart_filter_catalog_display', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::filter_catalog_display',1,1002);
+      Core\Extend\Hook::register('cart_post_manualcat_itemedit', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemedit_post',1,1002);
+      Core\Extend\Hook::register('cart_post_manualcat_itemactivation', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemedit_activation_post',1,1002);
+      Core\Extend\Hook::register('cart_post_manualcat_itemdeactivation', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::itemedit_deactivation_post',1,1002);
+      Core\Extend\Hook::register('cart_submodule_activation', 'addon/cart/submodules/manualcat.php', 'Cart_manualcat::module_activation',1,1002);
+      Core\Extend\Hook::register('cart_order_before_additem_manualcat', 'addon/cart/submodule/manualcat.php', 'Cart_manualcat::filter_before_add',1,1002);
     }
 
     static public function unload () {
-      Zotlabs\Extend\Hook::unregister_by_file('addon/cart/submodules/manualcat.php');
+      Core\Extend\Hook::unregister_by_file('addon/cart/submodules/manualcat.php');
     }
 
     static public function module_activation (&$hookdata) {

@@ -11,9 +11,9 @@
  * MinVersion: 2.8
  */
 
-use Zotlabs\Lib\Apps;
-use Zotlabs\Lib\PConfig;
-use Zotlabs\Extend\Hook;
+use Core\Lib\Apps;
+use Core\Lib\PConfig;
+use Core\Extend\Hook;
 
 class Cart_orderoptions {
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace Zotlabs\Widget;
+namespace Core\Widget;
 
 class Cartbutton {
 

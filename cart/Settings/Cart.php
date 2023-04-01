@@ -1,8 +1,8 @@
 <?php
 
-namespace Zotlabs\Module\Settings;
+namespace Core\Module\Settings;
 
-use Zotlabs\Lib\Apps;
+use Core\Lib\Apps;
 
 require_once('addon/cart/cart.php');
 
