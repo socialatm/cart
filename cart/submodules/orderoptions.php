@@ -11,9 +11,9 @@
  * MinVersion: 2.8
  */
 
-use Core\Lib\Apps;
-use Core\Lib\PConfig;
-use Core\Extend\Hook;
+use Code\Lib\Apps;
+use Code\Lib\PConfig;
+use Code\Extend\Hook;
 
 class Cart_orderoptions {
 

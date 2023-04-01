@@ -30,7 +30,7 @@ var version = $.ui.version = "1.12.1";
  */
 
 //>>label: Widget
-//>>group: Core
+//>>group: Code
 //>>description: Provides a factory for creating stateful widgets with a common API.
 //>>docs: http://api.jqueryui.com/jQuery.widget/
 //>>demos: http://jqueryui.com/widget/
@@ -755,7 +755,7 @@ var widget = $.widget;
  */
 
 //>>label: Position
-//>>group: Core
+//>>group: Code
 //>>description: Positions elements relative to other elements.
 //>>docs: http://api.jqueryui.com/position/
 //>>demos: http://jqueryui.com/position/
@@ -1241,7 +1241,7 @@ var position = $.ui.position;
  */
 
 //>>label: :data Selector
-//>>group: Core
+//>>group: Code
 //>>description: Selects elements which have data stored under the specified key.
 //>>docs: http://api.jqueryui.com/data-selector/
 
@@ -1270,7 +1270,7 @@ var data = $.extend( $.expr[ ":" ], {
  */
 
 //>>label: disableSelection
-//>>group: Core
+//>>group: Code
 //>>description: Disable selection of text content within the set of matched elements.
 //>>docs: http://api.jqueryui.com/disableSelection/
 
@@ -1305,12 +1305,12 @@ var disableSelection = $.fn.extend( {
  * http://jquery.org/license
  */
 
-//>>label: Effects Core
+//>>label: Effects Code
 //>>group: Effects
 // jscs:disable maximumLineLength
 //>>description: Extends the internal jQuery effects. Includes morphing and easing. Required by all other effects.
 // jscs:enable maximumLineLength
-//>>docs: http://api.jqueryui.com/category/effects-core/
+//>>docs: http://api.jqueryui.com/category/effects-Code/
 //>>demos: http://jqueryui.com/effect/
 
 
@@ -2716,7 +2716,7 @@ $.fn.extend( {
 			if ( $.uiBackCompat !== false && !defaultMode ) {
 				if ( elem.is( ":hidden" ) ? mode === "hide" : mode === "show" ) {
 
-					// Call the core method to track "olddisplay" properly
+					// Call the Code method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
@@ -2725,7 +2725,7 @@ $.fn.extend( {
 			} else {
 				if ( args.mode === "none" ) {
 
-					// Call the core method to track "olddisplay" properly
+					// Call the Code method to track "olddisplay" properly
 					elem[ mode ]();
 					done();
 				} else {
@@ -3880,7 +3880,7 @@ var effectsEffectTransfer = effect;
  */
 
 //>>label: :focusable Selector
-//>>group: Core
+//>>group: Code
 //>>description: Selects elements which can be focused.
 //>>docs: http://api.jqueryui.com/focusable-selector/
 
@@ -3964,7 +3964,7 @@ var form = $.fn.form = function() {
  */
 
 //>>label: Form Reset Mixin
-//>>group: Core
+//>>group: Code
 //>>description: Refresh input widgets when their form is reset
 //>>docs: http://api.jqueryui.com/form-reset-mixin/
 
@@ -4018,7 +4018,7 @@ var formResetMixin = $.ui.formResetMixin = {
 
 
 /*!
- * jQuery UI Support for jQuery core 1.7.x 1.12.1
+ * jQuery UI Support for jQuery Code 1.7.x 1.12.1
  * http://jqueryui.com
  *
  * Copyright jQuery Foundation and other contributors
@@ -4028,8 +4028,8 @@ var formResetMixin = $.ui.formResetMixin = {
  */
 
 //>>label: jQuery 1.7 Support
-//>>group: Core
-//>>description: Support version 1.7.x of jQuery core
+//>>group: Code
+//>>description: Support version 1.7.x of jQuery Code
 
 
 
@@ -4042,7 +4042,7 @@ var formResetMixin = $.ui.formResetMixin = {
 if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
 
 	// Setters for .innerWidth(), .innerHeight(), .outerWidth(), .outerHeight()
-	// Unlike jQuery Core 1.8+, these only support numeric values to set the
+	// Unlike jQuery Code 1.8+, these only support numeric values to set the
 	// dimensions in pixels
 	$.each( [ "Width", "Height" ], function( i, name ) {
 		var side = name === "Width" ? [ "Left", "Right" ] : [ "Top", "Bottom" ],
@@ -4106,7 +4106,7 @@ if ( $.fn.jquery.substring( 0, 3 ) === "1.7" ) {
  */
 
 //>>label: Keycode
-//>>group: Core
+//>>group: Code
 //>>description: Provide keycodes as keynames
 //>>docs: http://api.jqueryui.com/jQuery.ui.keyCode/
 
@@ -4152,7 +4152,7 @@ var escapeSelector = $.ui.escapeSelector = ( function() {
  */
 
 //>>label: labels
-//>>group: Core
+//>>group: Code
 //>>description: Find all the labels associated with a given input
 //>>docs: http://api.jqueryui.com/labels/
 
@@ -4204,7 +4204,7 @@ var labels = $.fn.labels = function() {
  */
 
 //>>label: scrollParent
-//>>group: Core
+//>>group: Code
 //>>description: Get the closest ancestor element that is scrollable.
 //>>docs: http://api.jqueryui.com/scrollParent/
 
@@ -4239,7 +4239,7 @@ var scrollParent = $.fn.scrollParent = function( includeHidden ) {
  */
 
 //>>label: :tabbable Selector
-//>>group: Core
+//>>group: Code
 //>>description: Selects elements which can be tabbed to.
 //>>docs: http://api.jqueryui.com/tabbable-selector/
 
@@ -4264,7 +4264,7 @@ var tabbable = $.extend( $.expr[ ":" ], {
  */
 
 //>>label: uniqueId
-//>>group: Core
+//>>group: Code
 //>>description: Functions to generate and remove uniqueId's
 //>>docs: http://api.jqueryui.com/uniqueId/
 
@@ -4309,7 +4309,7 @@ var uniqueId = $.fn.extend( {
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/accordion/
 //>>demos: http://jqueryui.com/accordion/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/accordion.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -4934,7 +4934,7 @@ var safeActiveElement = $.ui.safeActiveElement = function( document ) {
 //>>description: Creates nestable menus.
 //>>docs: http://api.jqueryui.com/menu/
 //>>demos: http://jqueryui.com/menu/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/menu.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -5589,7 +5589,7 @@ var widgetsMenu = $.widget( "ui.menu", {
 //>>description: Lists suggested words as the user is typing.
 //>>docs: http://api.jqueryui.com/autocomplete/
 //>>demos: http://jqueryui.com/autocomplete/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/autocomplete.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -6253,7 +6253,7 @@ var widgetsAutocomplete = $.ui.autocomplete;
 //>>description: Visually groups form control widgets
 //>>docs: http://api.jqueryui.com/controlgroup/
 //>>demos: http://jqueryui.com/controlgroup/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/controlgroup.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -6538,7 +6538,7 @@ var widgetsControlgroup = $.widget( "ui.controlgroup", {
 //>>description: Enhances a form with multiple themeable checkboxes or radio buttons.
 //>>docs: http://api.jqueryui.com/checkboxradio/
 //>>demos: http://jqueryui.com/checkboxradio/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/button.css
 //>>css.structure: ../../themes/base/checkboxradio.css
 //>>css.theme: ../../themes/base/theme.css
@@ -6808,7 +6808,7 @@ var widgetsCheckboxradio = $.ui.checkboxradio;
 //>>description: Enhances a form with themeable buttons.
 //>>docs: http://api.jqueryui.com/button/
 //>>demos: http://jqueryui.com/button/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/button.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -7176,7 +7176,7 @@ var widgetsButton = $.ui.button;
 //>>description: Displays a calendar from an input or inline for selecting dates.
 //>>docs: http://api.jqueryui.com/datepicker/
 //>>demos: http://jqueryui.com/datepicker/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/datepicker.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -9686,7 +9686,7 @@ $.widget( "ui.draggable", $.ui.mouse, {
 
 		/*
 		 * - Position generation -
-		 * This block generates everything position related - it's the core of draggables.
+		 * This block generates everything position related - it's the Code of draggables.
 		 */
 
 		//Cache the margins of the original element
@@ -10771,7 +10771,7 @@ var widgetsDraggable = $.ui.draggable;
 //>>description: Enables resize functionality for any element.
 //>>docs: http://api.jqueryui.com/resizable/
 //>>demos: http://jqueryui.com/resizable/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/resizable.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -11955,7 +11955,7 @@ var widgetsResizable = $.ui.resizable;
 //>>description: Displays customizable dialog windows.
 //>>docs: http://api.jqueryui.com/dialog/
 //>>demos: http://jqueryui.com/dialog/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/dialog.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -13353,7 +13353,7 @@ var widgetsDroppable = $.ui.droppable;
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/progressbar/
 //>>demos: http://jqueryui.com/progressbar/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/progressbar.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -13812,7 +13812,7 @@ var widgetsSelectable = $.widget( "ui.selectable", $.ui.mouse, {
 // jscs:enable maximumLineLength
 //>>docs: http://api.jqueryui.com/selectmenu/
 //>>demos: http://jqueryui.com/selectmenu/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/selectmenu.css, ../../themes/base/button.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -14476,7 +14476,7 @@ var widgetsSelectmenu = $.widget( "ui.selectmenu", [ $.ui.formResetMixin, {
 //>>description: Displays a flexible slider with ranges and accessibility via keyboard.
 //>>docs: http://api.jqueryui.com/slider/
 //>>demos: http://jqueryui.com/slider/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/slider.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -15385,7 +15385,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 		/*
 		 * - Position generation -
-		 * This block generates everything position related - it's the core of draggables.
+		 * This block generates everything position related - it's the Code of draggables.
 		 */
 
 		//Cache the margins of the original element
@@ -15788,7 +15788,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 
 	},
 
-	/* Be careful with the following core functions */
+	/* Be careful with the following Code functions */
 	_intersectsWith: function( item ) {
 
 		var x1 = this.positionAbs.left,
@@ -16748,7 +16748,7 @@ var widgetsSortable = $.widget( "ui.sortable", $.ui.mouse, {
 //>>description: Displays buttons to easily input numbers via the keyboard or mouse.
 //>>docs: http://api.jqueryui.com/spinner/
 //>>demos: http://jqueryui.com/spinner/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/spinner.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -17306,7 +17306,7 @@ var widgetsSpinner = $.ui.spinner;
 //>>description: Transforms a set of container elements into a tab structure.
 //>>docs: http://api.jqueryui.com/tabs/
 //>>demos: http://jqueryui.com/tabs/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/tabs.css
 //>>css.theme: ../../themes/base/theme.css
 
@@ -18212,7 +18212,7 @@ var widgetsTabs = $.ui.tabs;
 //>>description: Shows additional information for any element on hover or focus.
 //>>docs: http://api.jqueryui.com/tooltip/
 //>>demos: http://jqueryui.com/tooltip/
-//>>css.structure: ../../themes/base/core.css
+//>>css.structure: ../../themes/base/Code.css
 //>>css.structure: ../../themes/base/tooltip.css
 //>>css.theme: ../../themes/base/theme.css
 

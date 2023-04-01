@@ -1,25 +1,25 @@
 <?php
 
 function cart_myshop_load() {
-	Core\Extend\Hook::register('cart_main_myshop', 'addon/cart/myshop.php', 'cart_myshop_main', 1, 99);
-	Core\Extend\Hook::register('cart_aside_filter', 'addon/cart/myshop.php', 'cart_myshop_aside', 1, 99);
-	Core\Extend\Hook::register('cart_myshop_order', 'addon/cart/myshop.php', 'cart_myshop_order', 1, 99);
-	Core\Extend\Hook::register('cart_post_myshop_item_fulfill', 'addon/cart/myshop.php', 'cart_myshop_item_fulfill', 1, 99);
-	Core\Extend\Hook::register('cart_post_myshop_item_cancel', 'addon/cart/myshop.php', 'cart_myshop_item_cancel', 1, 99);
-	Core\Extend\Hook::register('cart_post_myshop_clear_item_exception', 'addon/cart/myshop.php', 'cart_myshop_clear_item_exception', 1, 99);
-	Core\Extend\Hook::register('cart_post_myshop_add_itemnote', 'addon/cart/myshop.php', 'cart_myshop_add_itemnote', 1, 99);
-	Core\Extend\Hook::register('cart_post_myshop_add_ordernote', 'addon/cart/myshop.php', 'cart_myshop_add_ordernote', 1, 99);
-	Core\Extend\Hook::register('cart_myshop_allorders', 'addon/cart/myshop.php', 'cart_myshop_allorders', 1, 99);
-	Core\Extend\Hook::register('cart_myshop_openorders', 'addon/cart/myshop.php', 'cart_myshop_openorders', 1, 99);
-	Core\Extend\Hook::register('cart_myshop_closedorders', 'addon/cart/myshop.php', 'cart_myshop_closedorders', 1, 99);
-	Core\Extend\Hook::register('cart_post_myshop_order_markpaid', 'addon/cart/myshop.php', 'cart_myshop_order_markpaid', 1, 99);
-	Core\Extend\Hook::register('cart_orderpaid', 'addon/cart/myshop.php', 'cart_myshop_orderpaid_hook', 1, 10000);
-	Core\Extend\Hook::register('cart_after_fulfill', 'addon/cart/cart.php', 'cart_myshop_itemfulfilled_hook', 1, 30000);
-	Core\Extend\Hook::register('cart_after_cancel', 'addon/cart/cart.php', 'cart_myshop_cancelled_hook', 1, 30000);
+	Code\Extend\Hook::register('cart_main_myshop', 'addon/cart/myshop.php', 'cart_myshop_main', 1, 99);
+	Code\Extend\Hook::register('cart_aside_filter', 'addon/cart/myshop.php', 'cart_myshop_aside', 1, 99);
+	Code\Extend\Hook::register('cart_myshop_order', 'addon/cart/myshop.php', 'cart_myshop_order', 1, 99);
+	Code\Extend\Hook::register('cart_post_myshop_item_fulfill', 'addon/cart/myshop.php', 'cart_myshop_item_fulfill', 1, 99);
+	Code\Extend\Hook::register('cart_post_myshop_item_cancel', 'addon/cart/myshop.php', 'cart_myshop_item_cancel', 1, 99);
+	Code\Extend\Hook::register('cart_post_myshop_clear_item_exception', 'addon/cart/myshop.php', 'cart_myshop_clear_item_exception', 1, 99);
+	Code\Extend\Hook::register('cart_post_myshop_add_itemnote', 'addon/cart/myshop.php', 'cart_myshop_add_itemnote', 1, 99);
+	Code\Extend\Hook::register('cart_post_myshop_add_ordernote', 'addon/cart/myshop.php', 'cart_myshop_add_ordernote', 1, 99);
+	Code\Extend\Hook::register('cart_myshop_allorders', 'addon/cart/myshop.php', 'cart_myshop_allorders', 1, 99);
+	Code\Extend\Hook::register('cart_myshop_openorders', 'addon/cart/myshop.php', 'cart_myshop_openorders', 1, 99);
+	Code\Extend\Hook::register('cart_myshop_closedorders', 'addon/cart/myshop.php', 'cart_myshop_closedorders', 1, 99);
+	Code\Extend\Hook::register('cart_post_myshop_order_markpaid', 'addon/cart/myshop.php', 'cart_myshop_order_markpaid', 1, 99);
+	Code\Extend\Hook::register('cart_orderpaid', 'addon/cart/myshop.php', 'cart_myshop_orderpaid_hook', 1, 10000);
+	Code\Extend\Hook::register('cart_after_fulfill', 'addon/cart/cart.php', 'cart_myshop_itemfulfilled_hook', 1, 30000);
+	Code\Extend\Hook::register('cart_after_cancel', 'addon/cart/cart.php', 'cart_myshop_cancelled_hook', 1, 30000);
 }
 
 function cart_myshop_unload() {
-	Core\Extend\Hook::unregister_by_file('addon/cart/myshop.php');
+	Code\Extend\Hook::unregister_by_file('addon/cart/myshop.php');
 }
 
 function cart_myshop_main(&$pagecontent) {

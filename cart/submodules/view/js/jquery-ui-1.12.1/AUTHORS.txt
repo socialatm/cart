@@ -88,7 +88,7 @@ Mario Visic <mario@mariovisic.com>
 Xavi Ramirez <xavi.rmz@gmail.com>
 Max Schnur <max.schnur@gmail.com>
 Saji Nediyanchath <saji89@gmail.com>
-Corey Frang <gnarf37@gmail.com>
+Codey Frang <gnarf37@gmail.com>
 Aaron Peterson <aaronp123@yahoo.com>
 Ivan Peters <ivan@ivanpeters.com>
 Mohamed Cherif Bouchelaghem <cherifbouchelaghem@yahoo.fr>
@@ -159,7 +159,7 @@ David De Sloovere <david.desloovere@outlook.com>
 Michael P. Jung <michael.jung@terreon.de>
 Shannon Pekary <spekary@gmail.com>
 Dan Wellman <danwellman@hotmail.com>
-Matthew Edward Hutton <meh@corefiling.co.uk>
+Matthew Edward Hutton <meh@Codefiling.co.uk>
 James Khoury <james@jameskhoury.com>
 Rob Loach <robloach@gmail.com>
 Alberto Monteiro <betimbrasil@gmail.com>

@@ -255,7 +255,7 @@ jQuery.extend( {
 
 	noop: function() {},
 
-	// See test/unit/core.js for details concerning isFunction.
+	// See test/unit/Code.js for details concerning isFunction.
 	// Since version 1.3, DOM methods and functions like alert
 	// aren't supported. They return false on IE (#2968).
 	isFunction: function( obj ) {
@@ -539,7 +539,7 @@ jQuery.extend( {
 		return +( new Date() );
 	},
 
-	// jQuery.support is not used in Core but other projects attach their
+	// jQuery.support is not used in Code but other projects attach their
 	// properties to it so it needs to exist.
 	support: support
 } );

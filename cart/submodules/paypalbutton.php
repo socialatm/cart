@@ -8,7 +8,7 @@
  * MinVersion: 2.8
  */
 
-use Core\Lib\Apps;
+use Code\Lib\Apps;
 
 class Cart_paypalbutton {
 
@@ -49,24 +49,24 @@ class Cart_paypalbutton {
     }
 
     static public function load (){
-      Core\Extend\Hook::register('cart_addon_settings', 'addon/cart/submodules/paypalbutton.php', 'Cart_paypalbutton::addon_settings',1);
-      Core\Extend\Hook::register('cart_addon_settings_post', 'addon/cart/submodules/paypalbutton.php', 'Cart_paypalbutton::addon_settings_post',1);
-      Core\Extend\Hook::register('cart_paymentopts','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::register');
-      Core\Extend\Hook::register('cart_checkout_paypalbutton','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::checkout');
-      Core\Extend\Hook::register('cart_post_paypalbutton_checkout_confirm','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::checkout_confirm');
-      Core\Extend\Hook::register('cart_post_paypalbutton_checkout_cancel','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::checkout_cancel');
-      Core\Extend\Hook::register('cart_post_custom_paypal_buttonhook','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::buttonhook');
-      Core\Extend\Hook::register('cart_post_custom_paypal_buttonhook_create','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::buttonhook_create');
-      Core\Extend\Hook::register('cart_post_custom_paypal_buttonhook_execute','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::buttonhook_execute');
-      Core\Extend\Hook::register('cart_paymentopts','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::register');
-      Core\Extend\Hook::register('cart_addons_myshop_order_display','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::admin_payment_display');
-      Core\Extend\Hook::register('cart_currency_filter','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::currency_filter');
+      Code\Extend\Hook::register('cart_addon_settings', 'addon/cart/submodules/paypalbutton.php', 'Cart_paypalbutton::addon_settings',1);
+      Code\Extend\Hook::register('cart_addon_settings_post', 'addon/cart/submodules/paypalbutton.php', 'Cart_paypalbutton::addon_settings_post',1);
+      Code\Extend\Hook::register('cart_paymentopts','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::register');
+      Code\Extend\Hook::register('cart_checkout_paypalbutton','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::checkout');
+      Code\Extend\Hook::register('cart_post_paypalbutton_checkout_confirm','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::checkout_confirm');
+      Code\Extend\Hook::register('cart_post_paypalbutton_checkout_cancel','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::checkout_cancel');
+      Code\Extend\Hook::register('cart_post_custom_paypal_buttonhook','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::buttonhook');
+      Code\Extend\Hook::register('cart_post_custom_paypal_buttonhook_create','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::buttonhook_create');
+      Code\Extend\Hook::register('cart_post_custom_paypal_buttonhook_execute','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::buttonhook_execute');
+      Code\Extend\Hook::register('cart_paymentopts','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::register');
+      Code\Extend\Hook::register('cart_addons_myshop_order_display','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::admin_payment_display');
+      Code\Extend\Hook::register('cart_currency_filter','addon/cart/submodules/paypalbutton.php','Cart_paypalbutton::currency_filter');
 
       //notice('Loaded submodule: paypalbutton'.EOL);
     }
 
     static public function unload () {
-      Core\Extend\Hook::unregister_by_file('addon/cart/submodules/paypalbutton.php');
+      Code\Extend\Hook::unregister_by_file('addon/cart/submodules/paypalbutton.php');
       //notice('UNLoaded submodule: paypalbutton'.EOL);
 
     }
@@ -291,7 +291,7 @@ class Cart_paypalbutton {
       $order["links"]["checkoutlink"]= z_root() . '/cart/' . $nick . '/checkout/start?cart='.$order["order_hash"];
       $order["paypalenv"]=$paypal_environment;
       $order["currency"]=$paypal_currency;
-      Core\Extend\Hook::insert('content_security_policy', 'Cart_paypalbutton::paypal_CSP',1);
+      Code\Extend\Hook::insert('content_security_policy', 'Cart_paypalbutton::paypal_CSP',1);
       $template = get_markup_template('basic_checkout_ppbutton.tpl','addon/cart/submodules/');
       call_hooks("cart_display_before",$order);
       $display = replace_macros($template, $order);

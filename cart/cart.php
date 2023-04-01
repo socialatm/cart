@@ -1,12 +1,12 @@
 <?php
 
-use Core\Lib\Apps;
-use Core\Extend\Route;
-use Core\Extend\Hook;
+use Code\Lib\Apps;
+use Code\Extend\Route;
+use Code\Extend\Hook;
 
 /**
  * Name: cart
- * Description: Core cart utilities for orders and payments
+ * Description: Code cart utilities for orders and payments
  * Version: 1.0.0
  * Author: Matthew Dent <dentm42@dm42.net>
  * MinVersion: 3.6
@@ -1286,40 +1286,40 @@ function cart_uninstall() {
 
 function cart_load() {
 	// HOOK REGISTRATION
-	Core\Extend\Hook::register('construct_page', 'addon/cart/cart.php', 'cart_construct_page', 1);
-	Core\Extend\Hook::register('channel_apps', 'addon/cart/cart.php', 'cart_channel_apps');
-	Core\Extend\Hook::register('cart_do_additem', 'addon/cart/cart.php', 'cart_do_additem', 1);
-	Core\Extend\Hook::register('cart_order_additem', 'addon/cart/cart.php', 'cart_additem_hook', 1);
-	Core\Extend\Hook::register('cart_do_updateitem', 'addon/cart/cart.php', 'cart_do_updateitem', 1, 1);
-	Core\Extend\Hook::register('cart_order_updateitem', 'addon/cart/cart.php', 'cart_updateitem_hook', 1, 1);
-	Core\Extend\Hook::register('cart_order_before_updateitem', 'addon/cart/cart.php', 'cart_updateitem_qty_hook', 1, 32000);
-	Core\Extend\Hook::register('cart_order_before_updateitem', 'addon/cart/cart.php', 'cart_updateitem_delsku_hook', 1, 32000);
-	Core\Extend\Hook::register('cart_checkout', 'addon/cart/cart.php', 'cart_checkout_hook', 1);
-	Core\Extend\Hook::register('cart_do_checkout', 'addon/cart/cart.php', 'cart_do_checkout', 1);
-	Core\Extend\Hook::register('cart_orderpaid', 'addon/cart/cart.php', 'cart_orderpaid_hook', 1);
-	Core\Extend\Hook::register('cart_do_orderpaid', 'addon/cart/cart.php', 'cart_do_orderpaid', 1);
-	Core\Extend\Hook::register('cart_before_checkout', 'addon/cart/cart.php', 'cart_calc_totals', 1, 10);
-	Core\Extend\Hook::register('cart_calc_totals', 'addon/cart/cart.php', 'cart_calc_totals', 1, 10);
-	Core\Extend\Hook::register('cart_display_before', 'addon/cart/cart.php', 'cart_calc_totals', 1, 99);
-	Core\Extend\Hook::register('cart_display_before', 'addon/cart/cart.php', 'cart_display_before_addcheckoutlink', 1, 31000);
-	Core\Extend\Hook::register('cart_display_before', 'addon/cart/cart.php', 'cart_display_before_formatcurrency', 1, 31001);
-	Core\Extend\Hook::register('cart_display', 'addon/cart/cart.php', 'cart_display_applytemplate', 1, 31000);
-	Core\Extend\Hook::register('cart_mod_content', 'addon/cart/cart.php', 'cart_mod_content', 1, 99);
-	Core\Extend\Hook::register('cart_post_add_item', 'addon/cart/cart.php', 'cart_post_add_item');
-	Core\Extend\Hook::register('cart_post_update_item', 'addon/cart/cart.php', 'cart_post_update_item', 1, 1);
-	Core\Extend\Hook::register('cart_checkout_start', 'addon/cart/cart.php', 'cart_checkout_start');
-	Core\Extend\Hook::register('cart_post_checkout_choosepayment', 'addon/cart/cart.php', 'cart_post_choose_payment', 1, 32000);
-	Core\Extend\Hook::register('cart_aside_filter', 'addon/cart/cart.php', 'cart_render_aside', 1, 10000);
-	Core\Extend\Hook::register('cart_after_fulfill', 'addon/cart/cart.php', 'cart_after_fulfill_finishorder', 1, 32000);
-	Core\Extend\Hook::register('cart_after_fulfill', 'addon/cart/cart.php', 'cart_fulfillitem_markfulfilled', 1, 31000);
-	Core\Extend\Hook::register('cart_after_cancel', 'addon/cart/cart.php', 'cart_cancelitem_unmarkfulfilled', 1, 31000);
-	Core\Extend\Hook::register('cart_get_catalog', 'addon/cart/cart.php', 'cart_get_test_catalog', 1, 0);
+	Code\Extend\Hook::register('construct_page', 'addon/cart/cart.php', 'cart_construct_page', 1);
+	Code\Extend\Hook::register('channel_apps', 'addon/cart/cart.php', 'cart_channel_apps');
+	Code\Extend\Hook::register('cart_do_additem', 'addon/cart/cart.php', 'cart_do_additem', 1);
+	Code\Extend\Hook::register('cart_order_additem', 'addon/cart/cart.php', 'cart_additem_hook', 1);
+	Code\Extend\Hook::register('cart_do_updateitem', 'addon/cart/cart.php', 'cart_do_updateitem', 1, 1);
+	Code\Extend\Hook::register('cart_order_updateitem', 'addon/cart/cart.php', 'cart_updateitem_hook', 1, 1);
+	Code\Extend\Hook::register('cart_order_before_updateitem', 'addon/cart/cart.php', 'cart_updateitem_qty_hook', 1, 32000);
+	Code\Extend\Hook::register('cart_order_before_updateitem', 'addon/cart/cart.php', 'cart_updateitem_delsku_hook', 1, 32000);
+	Code\Extend\Hook::register('cart_checkout', 'addon/cart/cart.php', 'cart_checkout_hook', 1);
+	Code\Extend\Hook::register('cart_do_checkout', 'addon/cart/cart.php', 'cart_do_checkout', 1);
+	Code\Extend\Hook::register('cart_orderpaid', 'addon/cart/cart.php', 'cart_orderpaid_hook', 1);
+	Code\Extend\Hook::register('cart_do_orderpaid', 'addon/cart/cart.php', 'cart_do_orderpaid', 1);
+	Code\Extend\Hook::register('cart_before_checkout', 'addon/cart/cart.php', 'cart_calc_totals', 1, 10);
+	Code\Extend\Hook::register('cart_calc_totals', 'addon/cart/cart.php', 'cart_calc_totals', 1, 10);
+	Code\Extend\Hook::register('cart_display_before', 'addon/cart/cart.php', 'cart_calc_totals', 1, 99);
+	Code\Extend\Hook::register('cart_display_before', 'addon/cart/cart.php', 'cart_display_before_addcheckoutlink', 1, 31000);
+	Code\Extend\Hook::register('cart_display_before', 'addon/cart/cart.php', 'cart_display_before_formatcurrency', 1, 31001);
+	Code\Extend\Hook::register('cart_display', 'addon/cart/cart.php', 'cart_display_applytemplate', 1, 31000);
+	Code\Extend\Hook::register('cart_mod_content', 'addon/cart/cart.php', 'cart_mod_content', 1, 99);
+	Code\Extend\Hook::register('cart_post_add_item', 'addon/cart/cart.php', 'cart_post_add_item');
+	Code\Extend\Hook::register('cart_post_update_item', 'addon/cart/cart.php', 'cart_post_update_item', 1, 1);
+	Code\Extend\Hook::register('cart_checkout_start', 'addon/cart/cart.php', 'cart_checkout_start');
+	Code\Extend\Hook::register('cart_post_checkout_choosepayment', 'addon/cart/cart.php', 'cart_post_choose_payment', 1, 32000);
+	Code\Extend\Hook::register('cart_aside_filter', 'addon/cart/cart.php', 'cart_render_aside', 1, 10000);
+	Code\Extend\Hook::register('cart_after_fulfill', 'addon/cart/cart.php', 'cart_after_fulfill_finishorder', 1, 32000);
+	Code\Extend\Hook::register('cart_after_fulfill', 'addon/cart/cart.php', 'cart_fulfillitem_markfulfilled', 1, 31000);
+	Code\Extend\Hook::register('cart_after_cancel', 'addon/cart/cart.php', 'cart_cancelitem_unmarkfulfilled', 1, 31000);
+	Code\Extend\Hook::register('cart_get_catalog', 'addon/cart/cart.php', 'cart_get_test_catalog', 1, 0);
 	Route::register('addon/cart/Settings/Cart.php', 'settings/cart');
 
 	// WIDGET REGISTRATION
 	if (Cart::check_min_version('hubzilla', '3.7.1')) {
-		Core\Extend\Widget::register('addon/cart/widgets/cartbutton.php', 'cartbutton');
-		Core\Extend\Widget::register('addon/cart/widgets/catalogitem.php', 'catalogitem');
+		Code\Extend\Widget::register('addon/cart/widgets/cartbutton.php', 'cartbutton');
+		Code\Extend\Widget::register('addon/cart/widgets/catalogitem.php', 'catalogitem');
 	}
 
 	//$manualpayments = get_pconfig ($id,'cart','enable_manual_payments');
@@ -1341,12 +1341,12 @@ function cart_load() {
 }
 
 function cart_unload() {
-	Core\Extend\Hook::unregister_by_file('addon/cart/cart.php');
+	Code\Extend\Hook::unregister_by_file('addon/cart/cart.php');
 
 	// WIDGET UNREGISTRATION
 	if (Cart::check_min_version('hubzilla', '3.7.1')) {
-		Core\Extend\Widget::unregister('addon/cart/widgets/cartbutton.php', 'cartbutton');
-		Core\Extend\Widget::unregister('addon/cart/widgets/catalogitem.php', 'catalogitem');
+		Code\Extend\Widget::unregister('addon/cart/widgets/cartbutton.php', 'cartbutton');
+		Code\Extend\Widget::unregister('addon/cart/widgets/catalogitem.php', 'catalogitem');
 	}
 
 	Route::unregister('addon/cart/Settings/Cart.php', 'settings/cart');

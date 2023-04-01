@@ -9,10 +9,10 @@
  * MinVersion: 2.8
  */
 
-use Core\Lib\Apps;
-use Core\Lib\Connect;
-use Core\Lib\Libsync;
-use Core\Lib\AccessList;
+use Code\Lib\Apps;
+use Code\Lib\Connect;
+use Code\Lib\Libsync;
+use Code\Lib\AccessList;
 
 class Cart_hzservices {
 
@@ -23,24 +23,24 @@ class Cart_hzservices {
     }
 
     static public function load (){
-      Core\Extend\Hook::register('cart_addon_settings', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::addon_settings',1);
-      Core\Extend\Hook::register('cart_addon_settings_post', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::addon_settings_post',1);
+      Code\Extend\Hook::register('cart_addon_settings', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::addon_settings',1);
+      Code\Extend\Hook::register('cart_addon_settings_post', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::addon_settings_post',1);
 
-      Core\Extend\Hook::register('cart_myshop_menufilter', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::myshop_menuitems',1,1001);
-      Core\Extend\Hook::register('cart_myshop_hzservices', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemadmin',1,1001);
-      Core\Extend\Hook::register('cart_fulfill_hzservices', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::fulfill_hzservices',1,1001);
-      Core\Extend\Hook::register('cart_cancel_hzservices', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::rollback_hzservices',1,1001);
-      Core\Extend\Hook::register('cart_get_catalog', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::get_catalog',1,1001);
-      Core\Extend\Hook::register('cart_filter_catalog_display', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::filter_catalog_display',1,1001);
-      Core\Extend\Hook::register('cart_post_hzservices_itemedit', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemedit_post',1,1001);
-      Core\Extend\Hook::register('cart_post_hzservices_itemactivation', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemedit_activation_post',1,1001);
-      Core\Extend\Hook::register('cart_post_hzservices_itemdeactivation', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemedit_deactivation_post',1,1001);
-      Core\Extend\Hook::register('cart_submodule_activation', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::module_activation',1,1001);
-      Core\Extend\Hook::register('cart_order_before_additem_hzservices', 'addon/cart/submodule/hzservices.php', 'Cart_hzservices::filter_before_add',1,1001);
+      Code\Extend\Hook::register('cart_myshop_menufilter', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::myshop_menuitems',1,1001);
+      Code\Extend\Hook::register('cart_myshop_hzservices', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemadmin',1,1001);
+      Code\Extend\Hook::register('cart_fulfill_hzservices', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::fulfill_hzservices',1,1001);
+      Code\Extend\Hook::register('cart_cancel_hzservices', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::rollback_hzservices',1,1001);
+      Code\Extend\Hook::register('cart_get_catalog', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::get_catalog',1,1001);
+      Code\Extend\Hook::register('cart_filter_catalog_display', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::filter_catalog_display',1,1001);
+      Code\Extend\Hook::register('cart_post_hzservices_itemedit', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemedit_post',1,1001);
+      Code\Extend\Hook::register('cart_post_hzservices_itemactivation', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemedit_activation_post',1,1001);
+      Code\Extend\Hook::register('cart_post_hzservices_itemdeactivation', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::itemedit_deactivation_post',1,1001);
+      Code\Extend\Hook::register('cart_submodule_activation', 'addon/cart/submodules/hzservices.php', 'Cart_hzservices::module_activation',1,1001);
+      Code\Extend\Hook::register('cart_order_before_additem_hzservices', 'addon/cart/submodule/hzservices.php', 'Cart_hzservices::filter_before_add',1,1001);
     }
 
     static public function unload () {
-      Core\Extend\Hook::unregister_by_file('addon/cart/submodules/hzservices.php');
+      Code\Extend\Hook::unregister_by_file('addon/cart/submodules/hzservices.php');
     }
 
     static public function module_activation (&$hookdata) {

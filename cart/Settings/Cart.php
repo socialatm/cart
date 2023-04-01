@@ -1,8 +1,8 @@
 <?php
 
-namespace Core\Module\Settings;
+namespace Code\Module\Settings;
 
-use Core\Lib\Apps;
+use Code\Lib\Apps;
 
 require_once('addon/cart/cart.php');
 
