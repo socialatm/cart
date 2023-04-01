@@ -2,6 +2,7 @@
 
 use Core\Lib\Apps;
 use Core\Extend\Route;
+use Core\Extend\Hook;
 
 /**
  * Name: cart
