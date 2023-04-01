@@ -61,7 +61,7 @@ class Cart_hzservices {
          return;
       }
       $enable_hzservices = get_pconfig ($id,'cart_hzservices','enable');
-      $sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+      $sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
                  '$field'	=> array('enable_cart_hzservices', t('Enable Hubzilla Services Module'),
                    (isset($enable_hzservices) ? intval($enable_hzservices) : 0),
                    '',array(t('No'),t('Yes')))));
@@ -158,14 +158,14 @@ class Cart_hzservices {
     $skus = $skus ? cart_maybeunjson($skus) : Array();
     $skulist = '';
     $templatevalues=Array("security_token"=>get_form_security_token(),"skus"=>$skus);
-    $skulist .= replace_macros(get_markup_template('hzservices.itemadmin.skulist.tpl','addon/cart/submodules/'),$templatevalues);
+    $skulist .= replace_macros(Theme::get_template('hzservices.itemadmin.skulist.tpl','addon/cart/submodules/'),$templatevalues);
 
-    $formelements= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('SKU', t('New Sku'), "")));
     $formelements.=' <button class="btn btn-sm" type="submit" name="submit"><i class="fa fa-plus fa-fw" aria-hidden="true"></i></button>';
     $macrosubstitutes=Array("security_token"=>get_form_security_token(),"skulist"=>$skulist,"formelements"=>$formelements);
 
-    $pagecontent .= replace_macros(get_markup_template('hzservices.itemadmin.tpl','addon/cart/submodules/'),$macrosubstitutes);
+    $pagecontent .= replace_macros(Theme::get_template('hzservices.itemadmin.tpl','addon/cart/submodules/'),$macrosubstitutes);
   }
 
   static public function itemedit_post() {
@@ -562,7 +562,7 @@ class Cart_hzservices {
 
     }
 
-    $o = replace_macros(get_markup_template('group_selection.tpl'), array(
+    $o = replace_macros(Theme::get_template('group_selection.tpl'), array(
         '$label' => t('Add to this privacy group'),
         '$groups' => $grps
     ));
@@ -578,7 +578,7 @@ class Cart_hzservices {
     foreach ($service_classes as $class=>$class_info) {
       $classes[$class] = $class;
     }
-    $o = replace_macros(get_markup_template('field_select.tpl'), array(
+    $o = replace_macros(Theme::get_template('field_select.tpl'), array(
         '$field' => Array('svcclass',t('Set user service class'),'','',$classes)
     ));
     return $o;
@@ -645,30 +645,30 @@ class Cart_hzservices {
     $formelements["submit"]=t("Submit");
     $formelements["uri"]=strtok($_SERVER["REQUEST_URI"],'?').'?SKU='.$sku;
     // item_locked, item_desc, item_price, item_active
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
   				     '$field'	=> array('item_locked', t('Changes Locked'),
   							 (isset($item["item_locked"]) ? $item["item_locked"] : 0),
   							 '',array(t('No'),t('Yes')))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
    				     '$field'	=> array('item_active', t('Item available for purchase.'),
 							 (isset($item["item_active"]) ? $item["item_active"] : 0),
 							 '',array(t('No'),t('Yes')))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('item_description', t('Description'),
                 (isset($item["item_description"]) ? $item["item_description"] : "New Item"))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('item_price', t('Price'),
                 (isset($item["item_price"]) ? $item["item_price"] : "0.00"))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('item_photo_url', t('Photo URL'),
                 (isset($item["item_photo_url"]) ? $item["item_photo_url"] : ''))));
     $formelements["itemactivation"].= "<h3><u>Channel Commands</u></h3>\n";
-    $formelements["itemactivation"].= replace_macros(get_markup_template('field_radio.tpl'), array(
+    $formelements["itemactivation"].= replace_macros(Theme::get_template('field_radio.tpl'), array(
    				     '$field'	=> array('cmd', t('Add buyer to privacy group'),
 							 "addtoprivacygroup","Add purchaser to the selected privacy group"
 							 )));
     $formelements["itemactivation"].=Cart_hzservices::groupselect(App::$profile['uid']);
-    $formelements["itemactivation"].= replace_macros(get_markup_template('field_radio.tpl'), array(
+    $formelements["itemactivation"].= replace_macros(Theme::get_template('field_radio.tpl'), array(
    				     '$field'	=> array('cmd', t('Add buyer as connection'),
 							 "addconnection","Add purchaser as a channel connection"
 							 )));
@@ -676,7 +676,7 @@ class Cart_hzservices {
     if (Cart_hzservices::is_admin_merchant()) {
         $formelements["itemactivation"].= "<div id=\"cart-admin-merchant-activation\">\n";
         $formelements["itemactivation"].= "<h3><u>System Commands</u></h3>\n";
-        $formelements["itemactivation"].= replace_macros(get_markup_template('field_radio.tpl'), array(
+        $formelements["itemactivation"].= replace_macros(Theme::get_template('field_radio.tpl'), array(
    				     '$field'	=> array('cmd', t('Set Service Class'),
 							 "setsvcclass","Set the service class of the user"
 							 )));
@@ -718,7 +718,7 @@ class Cart_hzservices {
       if (Cart_hzservices::is_admin_merchant()) {
         $formelements["itemdeactivation"].= "<div id=\"cart-admin-merchant-deactivation\">\n";
         $formelements["itemdeactivation"].= "<h3><u>System Commands</u></h3>\n";
-        $formelements["itemdeactivation"].= replace_macros(get_markup_template('field_radio.tpl'), array(
+        $formelements["itemdeactivation"].= replace_macros(Theme::get_template('field_radio.tpl'), array(
    				     '$field'	=> array('cmd', t('Set Service Class'),
 							 "setsvcclass","Set the service class of the user"
 							 )));
@@ -754,7 +754,7 @@ class Cart_hzservices {
     }
     $macrosubstitutes=Array("security_token"=>get_form_security_token(),"sku"=>$sku,"formelements"=>$formelements);
 
-    return replace_macros(get_markup_template('hzservices.itemedit.tpl','addon/cart/submodules/'), $macrosubstitutes);
+    return replace_macros(Theme::get_template('hzservices.itemedit.tpl','addon/cart/submodules/'), $macrosubstitutes);
   }
 
   static public function myshop_menuitems (&$menu) {

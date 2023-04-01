@@ -77,7 +77,7 @@ function cart_checkout_manual (&$hookdata) {
 	$order["finishedtext"]=t("Finished");
 	$order["finishedurl"]= z_root() . '/cart/' . $nick;
    	$order["links"]["checkoutlink"] = z_root() . '/cart/' . $nick . '/checkout/start?cart='.$order["order_hash"];
-        $template = get_markup_template('basic_checkout_manual_confirm.tpl','addon/cart/');
+        $template = Theme::get_template('basic_checkout_manual_confirm.tpl','addon/cart/');
         Hook::call("cart_display_before",$order);
 	$display = replace_macros($template, $order);
 

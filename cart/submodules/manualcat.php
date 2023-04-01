@@ -57,7 +57,7 @@ class Cart_manualcat {
          return;
       }
       $enable_manualcat = get_pconfig ($id,'cart_manualcat','enable');
-      $s .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+      $s .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
                  '$field'	=> array('enable_cart_manualcat', t('Enable Manual Cart Module'),
                    (isset($enable_manualcat) ? intval($enable_manualcat) : 0),
                    '',array(t('No'),t('Yes')))));
@@ -166,14 +166,14 @@ class Cart_manualcat {
     ksort($skus,SORT_STRING);
     $skulist = '';
     $templatevalues=Array("security_token"=>get_form_security_token(),"skus"=>$skus);
-    $skulist .= replace_macros(get_markup_template('manualcat.itemadmin.skulist.tpl','addon/cart/submodules/'),$templatevalues);
+    $skulist .= replace_macros(Theme::get_template('manualcat.itemadmin.skulist.tpl','addon/cart/submodules/'),$templatevalues);
 
-    $formelements= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('SKU', t('New Sku'), "")));
     $formelements.=' <button class="btn btn-sm" type="submit" name="submit"><i class="fa fa-plus fa-fw" aria-hidden="true"></i></button>';
     $macrosubstitutes=Array("security_token"=>get_form_security_token(),"skulist"=>$skulist,"formelements"=>$formelements);
 
-    $pagecontent .= replace_macros(get_markup_template('manualcat.itemadmin.tpl','addon/cart/submodules/'),$macrosubstitutes);
+    $pagecontent .= replace_macros(Theme::get_template('manualcat.itemadmin.tpl','addon/cart/submodules/'),$macrosubstitutes);
   }
 
   static public function itemedit_post() {
@@ -248,27 +248,27 @@ class Cart_manualcat {
     $formelements["submit"]=t("Submit");
     $formelements["uri"]=strtok($_SERVER["REQUEST_URI"],'?').'?SKU='.$sku;
     // item_locked, item_desc, item_price, item_active
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
   				     '$field'	=> array('item_locked', t('Changes Locked'),
   							 (isset($item["item_locked"]) ? $item["item_locked"] : 0),
   							 '',array(t('No'),t('Yes')))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
    				     '$field'	=> array('item_active', t('Item available for purchase.'),
 							 (isset($item["item_active"]) ? $item["item_active"] : 0),
 							 '',array(t('No'),t('Yes')))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('item_description', t('Description'),
                 (isset($item["item_description"]) ? $item["item_description"] : "New Item"))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('item_price', t('Price'),
                 (isset($item["item_price"]) ? $item["item_price"] : "0.00"))));
-    $formelements["itemdetails"].= replace_macros(get_markup_template('field_input.tpl'), array(
+    $formelements["itemdetails"].= replace_macros(Theme::get_template('field_input.tpl'), array(
                 '$field'	=> array('item_photo_url', t('Photo URL'),
                 (isset($item["item_photo_url"]) ? $item["item_photo_url"] : ''))));
 
     $macrosubstitutes=Array("security_token"=>get_form_security_token(),"sku"=>$sku,"formelements"=>$formelements);
 
-    return replace_macros(get_markup_template('manualcat.itemedit.tpl','addon/cart/submodules/'), $macrosubstitutes);
+    return replace_macros(Theme::get_template('manualcat.itemedit.tpl','addon/cart/submodules/'), $macrosubstitutes);
   }
 
   static public function myshop_menuitems (&$menu) {

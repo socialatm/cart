@@ -66,7 +66,7 @@ class Cart_orderoptions {
          return;
       }
       $enable_orderoptions = get_pconfig ($id,'cart_orderoptions','enable');
-      $s .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+      $s .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
                  '$field'	=> array('enable_cart_orderoptions', t('Enable Order/Item Options'),
                    (isset($enable_orderoptions) ? intval($enable_orderoptions) : 0),
                    '',array(t('No'),t('Yes')))));
@@ -338,7 +338,7 @@ class Cart_orderoptions {
 			'no' => t('No')
 			],
 	];
-	$curopts .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'),$vars);
+	$curopts .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'),$vars);
     }
 
 	foreach (self::$validopttypes as $type=>$name) {
@@ -364,7 +364,7 @@ class Cart_orderoptions {
 			];
 
 		$templates .= "<div id='opttemplate-".$type."'>'";
-		$opttpl = replace_macros(get_markup_template($tpl,'addon/cart/submodules/'),$vars);
+		$opttpl = replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'),$vars);
 		$opttpl = trim(preg_replace('/\s+/', ' ', $opttpl));
 		$templates .= $opttpl;
 		$templates .= "'</div>\n\n";
@@ -379,7 +379,7 @@ class Cart_orderoptions {
 		'curopts'=>$curopts,
 		"sectitle" => 'Order Options',
 		];
-    $pagecontent = replace_macros(get_markup_template('orderoption_edit.tpl','addon/cart/submodules/'), $macrosubstitutes);
+    $pagecontent = replace_macros(Theme::get_template('orderoption_edit.tpl','addon/cart/submodules/'), $macrosubstitutes);
     $newpanels = $panels;
     $newpanels[] = [
 		'title'=>$macrosubstitutes['sectitle'],
@@ -438,7 +438,7 @@ class Cart_orderoptions {
 			'no' => t('No')
 			],
 	];
-	$curopts .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'),$vars);
+	$curopts .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'),$vars);
     }
 
 	foreach (self::$validopttypes as $type=>$name) {
@@ -464,7 +464,7 @@ class Cart_orderoptions {
 			];
 
 		$templates .= "<div id='opttemplate-".$type."'>'";
-		$opttpl = replace_macros(get_markup_template($tpl,'addon/cart/submodules/'),$vars);
+		$opttpl = replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'),$vars);
 		$opttpl = trim(preg_replace('/\s+/', ' ', $opttpl));
 		$templates .= $opttpl;
 		$templates .= "'</div>\n\n";
@@ -479,7 +479,7 @@ class Cart_orderoptions {
 		'templates'=>$templates,
 		'curopts'=>$curopts,
 	];
-    $pagecontent .= replace_macros(get_markup_template('itemoption_edit.tpl','addon/cart/submodules/'), $macrosubstitutes);
+    $pagecontent .= replace_macros(Theme::get_template('itemoption_edit.tpl','addon/cart/submodules/'), $macrosubstitutes);
   }
 
 
@@ -519,7 +519,7 @@ class Cart_orderoptions {
 			$tpl = 'itemoption_'.$type.'.tpl';
 			$opt['itemid']=$key;
 			$opt['confirmed']=$confirmed;
-    			$itemextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    			$itemextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 			unset($itemopts[$opt['uuid']]);
 		}
 		foreach ($itemopts as $opt) {
@@ -529,7 +529,7 @@ class Cart_orderoptions {
 			$tpl = 'itemoption_'.$type.'.tpl';
 			$opt['itemid']=$key;
 			$opt['confirmed']=$confirmed;
-    			$itemextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    			$itemextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 		}
 
 		$data['items'][$key]['meta']['data']['html'] .= $itemextras ? $itemextras : null;
@@ -551,7 +551,7 @@ class Cart_orderoptions {
 		$tpl = 'itemoption_'.$type.'.tpl';
 		$opt['itemid']='order';
 		$opt['confirmed']=$confirmed;
-    		$orderextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    		$orderextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 		if ($opt['required'] && !isset($opt['value'])) {
 			$data['readytopay']=0;
 		}
@@ -564,7 +564,7 @@ class Cart_orderoptions {
 		$tpl = 'itemoption_'.$type.'.tpl';
 		$opt['itemid']='order';
 		$opt['confirmed']=$confirmed;
-    		$orderextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    		$orderextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 	}
 
 	if ($orderextras != '') {
@@ -601,7 +601,7 @@ class Cart_orderoptions {
 			$tpl = 'itemoption_'.$type.'.tpl';
 			$opt['itemid']=$key;
 			$opt['confirmed']=$confirmed;
-    			$itemextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    			$itemextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 			if ($opt['required'] && !isset($opt['value'])) {
 				$data['readytopay']=0;
 			}
@@ -614,7 +614,7 @@ class Cart_orderoptions {
 			$tpl = 'itemoption_'.$type.'.tpl';
 			$opt['itemid']=$key;
 			$opt['confirmed']=$confirmed;
-    			$itemextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    			$itemextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 		}
 
 		$data['items'][$key]['itemextras'] = $itemextras;
@@ -636,7 +636,7 @@ class Cart_orderoptions {
 		$tpl = 'itemoption_'.$type.'.tpl';
 		$opt['itemid']='order';
 		$opt['confirmed']=$confirmed;
-    		$orderextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    		$orderextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 		if ($opt['required'] && !isset($opt['value'])) {
 			$data['readytopay']=0;
 		}
@@ -649,7 +649,7 @@ class Cart_orderoptions {
 		$tpl = 'itemoption_'.$type.'.tpl';
 		$opt['itemid']='order';
 		$opt['confirmed']=$confirmed;
-    		$orderextras .= replace_macros(get_markup_template($tpl,'addon/cart/submodules/'), $opt);
+    		$orderextras .= replace_macros(Theme::get_template($tpl,'addon/cart/submodules/'), $opt);
 	}
 
 	$data['orderextras'] = $orderextras;

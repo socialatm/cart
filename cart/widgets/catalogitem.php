@@ -45,7 +45,7 @@ class Catalogitem {
 
 		$templateinfo = ['name'=>'widget_catalogitem.tpl','path'=>'addon/cart/'];
 
-		$template = get_markup_template($templateinfo['name'],$templateinfo['path']);
+		$template = Theme::get_template($templateinfo['name'],$templateinfo['path']);
 
 		$item = [
 			'id'=> $id,

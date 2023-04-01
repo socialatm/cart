@@ -147,7 +147,7 @@ class Cart_subscriptions {
          return;
       }
       $enable_subscriptions = cart_getcartconfig ('subscriptions-enable');
-      $sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+      $sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
                  '$field'	=> array('enable_cart_subscriptions', t('Enable Subscription Management Module'),
                    (isset($enable_subscriptions) ? intval($enable_subscriptions) : 0),
                    '',array(t('No'),t('Yes')))));
@@ -366,7 +366,7 @@ class Cart_subscriptions {
 			}
 		}
 
-		$formelements .= replace_macros(get_markup_template('field_select.tpl'), array(
+		$formelements .= replace_macros(Theme::get_template('field_select.tpl'), array(
 			"field" => Array (
 				"SKU",
 				t('Select Subscription to Edit'),
@@ -378,7 +378,7 @@ class Cart_subscriptions {
 		$uri=strtok($_SERVER["REQUEST_URI"],'?').'?SKU='.urlencode($sku);
 
 		$macrosubstitutes=Array("security_token"=>get_form_security_token(),"sku"=>$sku,"formelements"=>$formelements,"submit"=>t("Edit Subscriptions"),"uri"=>$uri);
-		$pagecontent.=replace_macros(get_markup_template('subscription.itemedit_formextras.tpl','addon/cart/submodules/'), $macrosubstitutes);
+		$pagecontent.=replace_macros(Theme::get_template('subscription.itemedit_formextras.tpl','addon/cart/submodules/'), $macrosubstitutes);
 	}
 
     static public function subscriptionadmin(&$pagecontent) {
@@ -410,32 +410,32 @@ class Cart_subscriptions {
         $formelements["submit"]=t("Submit");
         $formelements["uri"]=strtok($_SERVER["REQUEST_URI"],'?').'?SKU='.urlencode($sku);
       if ($sku=="new") {
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_input.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_input.tpl'), array(
                   '$field'	=> array('SKU', t('Subscription SKU'),
                   "")));
       } else {
         $formelements["itemdetails"] .= "<input type='hidden' name='SKU' value='".$sku."'>";
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_input.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_input.tpl'), array(
                   '$field'	=> array('item_description', t('Catalog Description'),
                   (isset($subinfo["item_description"]) ? $subinfo["item_description"] : "New Subscription"))));
 
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
      				     '$field'	=> array('item_active', t('Subscription available for purchase.'),
   							 $subinfo["item_active"],
   							 '',array(t('No'),t('Yes')))));
 
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_input.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_input.tpl'), array(
         				     '$field'	=> array('maxsubscriptions', t('Maximum active subscriptions to this item per account.'),
        							 (isset($subinfo["item_maxsubscriptions"]) ? intval($subinfo["item_maxsubscriptions"]) : 1))));
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_input.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_input.tpl'), array(
         				     '$field'	=> array('item_price', t('Subscription price.'),
        							 (isset($subinfo["item_price"]) ? floatval($subinfo["item_price"]) : ""))));
 
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_input.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_input.tpl'), array(
                   '$field'	=> array('subscription_interval', t('Quantity'),
                   (isset($subinfo["interval"]) ? intval($subinfo["interval"]) : 1))));
 
-        $formelements["itemdetails"] .= replace_macros(get_markup_template('field_select.tpl'), array(
+        $formelements["itemdetails"] .= replace_macros(Theme::get_template('field_select.tpl'), array(
           "field" => Array ("subscription_term", t('Term'),
           isset($subinfo["term"]) ? $subinfo ["term"] : "month", "",
           Array("minute"=>"Minutes","hour"=>"Hours","day"=>"Days","week"=>"Weeks",
@@ -443,7 +443,7 @@ class Cart_subscriptions {
           )));
       }
       $macrosubstitutes=Array("security_token"=>get_form_security_token(),"itemsku"=>$itemsku,"sku"=>$sku,"formelements"=>$formelements);
-      return replace_macros(get_markup_template('subscription.itemedit.tpl','addon/cart/submodules/'), $macrosubstitutes);
+      return replace_macros(Theme::get_template('subscription.itemedit.tpl','addon/cart/submodules/'), $macrosubstitutes);
     }
 
     static public function subedit_post() {

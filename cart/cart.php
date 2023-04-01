@@ -3,6 +3,7 @@
 use Code\Lib\Apps;
 use Code\Extend\Route;
 use Code\Extend\Hook;
+use Code\Render\Theme;
 
 /**
  * Name: cart
@@ -948,7 +949,7 @@ function cart_do_updateitem(&$hookdata) {
 
 function cart_display_item(&$hookdata) {
 	$item                = $hookdata["item"];
-	$hookdata["content"] .= replace_macros(get_markup_template('cart_item_basic.tpl', 'addon/cart/'), ['$item' => $item]);
+	$hookdata["content"] .= replace_macros(Theme::get_template('cart_item_basic.tpl', 'addon/cart/'), ['$item' => $item]);
 
 }
 
@@ -1416,13 +1417,13 @@ function cart_plugin_admin(&$s) {
 	$dropdbonuninstall = intval(cart_getsysconfig("dropTablesOnUninstall"));
 
 	$sc = '';
-	$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), [
+	$sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), [
 		'$field' => ['cart_uninstall_drop_tables', t('Drop database tables when uninstalling.'),
 					 (isset($dropdbonuninstall) ? $dropdbonuninstall : 0),
 					 '', [t('No'), t('Yes')]]]);
 	$sc .= "<div class='warn'>If set to yes, ALL CART DATA will be lost when the cart module is disabled.</div>";
 
-	$s .= replace_macros(get_markup_template('generic_addon_settings.tpl'), [
+	$s .= replace_macros(Theme::get_template('generic_addon_settings.tpl'), [
 		'$addon'   => ['cart',
 					   t('Cart Settings'), '',
 					   t('Submit')],
@@ -1685,7 +1686,7 @@ function cart_pagecontent($a = null) {
 
 		$templateinfo = ['name' => 'basic_catalog.tpl', 'path' => 'addon/cart/'];
 		Hook::call('cart_filter_catalogtemplate', $templateinfo);
-		$template = get_markup_template($templateinfo['name'], $templateinfo['path']);
+		$template = Theme::get_template($templateinfo['name'], $templateinfo['path']);
 		return replace_macros($template, [
 			'$items'      => $items,
 			'$total_qty'  => $total_qty,
@@ -1719,7 +1720,7 @@ function cart_pagecontent($a = null) {
 	$templatevalues = ["menu" => $menu];
 	Hook::call('cart_mainmenu_filter', $templatevalues);
 
-	$template = get_markup_template('menu.tpl', 'addon/cart/');
+	$template = Theme::get_template('menu.tpl', 'addon/cart/');
 	$page     = replace_macros($template, $templatevalues);
 
 	if ((argc() > 2)) {
@@ -1744,7 +1745,7 @@ function cart_display_before_formatcurrency(&$order) {
 function cart_display_applytemplate(&$order) {
 	$templateinfo = ['name' => 'basic_cart.tpl', 'path' => 'addon/cart/'];
 	Hook::call('cart_filter_carttemplate', $templateinfo);
-	$template = get_markup_template($templateinfo['name'], $templateinfo['path']);
+	$template = Theme::get_template($templateinfo['name'], $templateinfo['path']);
 	Hook::call('cart_show_order_filter', $cart_template);
 	$order["content"] = replace_macros($template, $order);
 }
@@ -1781,7 +1782,7 @@ function cart_render_aside(&$aside) {
 	}
 
 	$templatevalues['content'] = $rendered;
-	$template                  = get_markup_template('cart_aside.tpl', 'addon/cart/');
+	$template                  = Theme::get_template('cart_aside.tpl', 'addon/cart/');
 	$rendered                  = replace_macros($template, $templatevalues);
 	$rendered                  .= $aside;
 	$aside                     = '<ul class="nav nav-pills flex-column">' . $rendered . '</ul>' . $aside;
@@ -1856,7 +1857,7 @@ function cart_checkout_start(&$hookdata) {
 	Hook::call('cart_before_checkout', $hookdata);
 	Hook::call('cart_display_before', $hookdata);
 
-	$template = get_markup_template('basic_checkout_start.tpl', 'addon/cart/');
+	$template = Theme::get_template('basic_checkout_start.tpl', 'addon/cart/');
 
 	$nick = App::$profile['channel_address'];
 

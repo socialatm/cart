@@ -52,7 +52,7 @@ logger("morepanels done");
 
 		$testcatalog = get_pconfig ($id,'cart','enable_test_catalog');
 
-		$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), [
+		$sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), [
 			'$field' => [
 				'enable_test_catalog',
 				t('Enable Test Catalog'),
@@ -64,7 +64,7 @@ logger("morepanels done");
 
 		$manualpayments = get_pconfig ($id,'cart','enable_manual_payments');
 
-		$sc .= replace_macros(get_markup_template('field_checkbox.tpl'), [
+		$sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), [
 			'$field' => [
 				'enable_manual_payments',
 				t('Enable Manual Payments'),
@@ -84,7 +84,7 @@ logger("morepanels done");
 			$currencyoptions[$c["code"]]=$c["code"]." - ".$c["name"];
 		}
 
-		$sc .= replace_macros(get_markup_template('field_select.tpl'), [
+		$sc .= replace_macros(Theme::get_template('field_select.tpl'), [
 			'$field' => [
 				'currency',
 				t('Base Merchant Currency'),
@@ -121,7 +121,7 @@ logger("morepanels done");
                         return $ret;
                 });
 
-		$tpl = get_markup_template("settings_addon.tpl");
+		$tpl = Theme::get_template("settings_addon.tpl");
 		$formsecurity = get_form_security_token("cart");
 		$o = replace_macros($tpl, [
 			'$action_url' => '/settings/cart',

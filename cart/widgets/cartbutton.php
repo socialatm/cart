@@ -31,7 +31,7 @@ class Cartbutton {
 
 		$templateinfo = array('name'=>'basic_widgetbutton.tpl','path'=>'addon/cart/');
 		Hook::call('cart_filter_widgetbutton_tpl',$templateinfo);
-		$template = get_markup_template($templateinfo['name'],$templateinfo['path']);
+		$template = Theme::get_template($templateinfo['name'],$templateinfo['path']);
 		$item = Array('order_qty'=>$count, 'item_sku'=>$sku, 'id'=>$id);
 		$arr = Array('$item'=>$item,'$posturl'=>'/cart/'.$nick.'/checkout');
 		if ($args['returnhere']) {

@@ -81,7 +81,7 @@ class Cart_paypalbutton {
       }
 
       $enable_paypalbutton = get_pconfig ($id,'cart','paypalbutton_enable');
-      $sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+      $sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
                  '$field'       => array('enable_cart_paypalbutton', t('Enable Paypal Button Module'),
                    (isset($enable_paypalbutton) ? $enable_paypalbutton : 0),
                    '',array(t('No'),t('Yes')))));
@@ -89,34 +89,34 @@ class Cart_paypalbutton {
       if (!$enable_paypalbutton) { return; }
 
       $paypalbutton_production = get_pconfig ($id,'cart','paypalbutton_production');
-      $sc .= replace_macros(get_markup_template('field_checkbox.tpl'), array(
+      $sc .= replace_macros(Theme::get_template('field_checkbox.tpl'), array(
                  '$field'       => array('paypalbutton_production', t('Use Production Key'),
                    (isset($paypalbutton_production) ? $paypalbutton_production : 0),
                    '',array(t('No'),t('Yes')))));
 
 
       $paypalbutton_sandboxclient = get_pconfig ($id,'cart','paypalbutton_sandboxclient');
-      $sc .= replace_macros(get_markup_template('field_input.tpl'),array(
+      $sc .= replace_macros(Theme::get_template('field_input.tpl'),array(
                    '$field'     => array ('paypalbutton_sandboxclient', t('Paypal Sandbox Client Key'),
                    (isset($paypalbutton_sandboxclient) ? "$paypalbutton_sandboxclient" : ''),
                    '',''
                    )));
 
       $paypalbutton_sandboxsecret = get_pconfig ($id,'cart','paypalbutton_sandboxsecret');
-      $sc .= replace_macros(get_markup_template('field_input.tpl'),array(
+      $sc .= replace_macros(Theme::get_template('field_input.tpl'),array(
                    '$field'     => array ('paypalbutton_sandboxsecret', t('Paypal Sandbox Secret Key'),
                    (isset($paypalbutton_sandboxsecret) ? $paypalbutton_sandboxsecret : ''),
                    '',''
                    )));
       $paypalbutton_productionclient = get_pconfig ($id,'cart','paypalbutton_productionclient');
-      $sc .= replace_macros(get_markup_template('field_input.tpl'),array(
+      $sc .= replace_macros(Theme::get_template('field_input.tpl'),array(
                    '$field'     => array ('paypalbutton_productionclient', t('Paypal Production Client Key'),
                    (isset($paypalbutton_productionclient) ? "$paypalbutton_productionclient" : ''),
                    '',''
                    )));
 
       $paypalbutton_productionsecret = get_pconfig ($id,'cart','paypalbutton_productionsecret');
-      $sc .= replace_macros(get_markup_template('field_input.tpl'),array(
+      $sc .= replace_macros(Theme::get_template('field_input.tpl'),array(
                    '$field'     => array ('paypalbutton_productionsecret', t('Paypal Production Secret Key'),
                    (isset($paypalbutton_productionsecret) ? $paypalbutton_productionsecret : ''),
                    '',''
@@ -292,7 +292,7 @@ class Cart_paypalbutton {
       $order["paypalenv"]=$paypal_environment;
       $order["currency"]=$paypal_currency;
       Code\Extend\Hook::insert('content_security_policy', 'Cart_paypalbutton::paypal_CSP',1);
-      $template = get_markup_template('basic_checkout_ppbutton.tpl','addon/cart/submodules/');
+      $template = Theme::get_template('basic_checkout_ppbutton.tpl','addon/cart/submodules/');
       Hook::call("cart_display_before",$order);
       $display = replace_macros($template, $order);
 
@@ -498,7 +498,7 @@ class Cart_paypalbutton {
     static function admin_payment_display (&$hookdata) {
         $order=$hookdata["order"];
         $paypaldata = Cart_paypalbutton::get_paypaldata($order["order_meta"]["paypal_button_history"]);
-        $template = get_markup_template('ppbutton_txndetails.tpl','addon/cart/submodules/');
+        $template = Theme::get_template('ppbutton_txndetails.tpl','addon/cart/submodules/');
         $display = replace_macros($template, Array("transactions"=>$paypaldata));
         //$hookdata["content"].="<div><pre>".print_r($order["order_meta"]["paypal_button_history"],true)."</pre></div>";
         //$hookdata["content"].="<div><pre>".print_r($paypaldata,true)."</pre></div>";
