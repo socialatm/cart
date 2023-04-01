@@ -284,7 +284,7 @@ class Cart_paypalbutton {
       $ppbutton_payopts = get_pconfig($page_uid,'cart','paypalbutton_payopts');
       $ppbutton_payopts["order_hash"]=$orderhash;
       $order = cart_loadorder($orderhash);
-      call_hooks('cart_calc_totals',$order);
+      Hook::call('cart_calc_totals',$order);
       $order["payopts"]=$ppbutton_payopts;
       $order["buttonhook"]= z_root() . '/cart/' . $nick . '/custom/paypal_buttonhook';
       $order["finishedurl"]= z_root() . '/cart/' . $nick . '/order/'.$order["order_hash"];
@@ -293,7 +293,7 @@ class Cart_paypalbutton {
       $order["currency"]=$paypal_currency;
       Code\Extend\Hook::insert('content_security_policy', 'Cart_paypalbutton::paypal_CSP',1);
       $template = get_markup_template('basic_checkout_ppbutton.tpl','addon/cart/submodules/');
-      call_hooks("cart_display_before",$order);
+      Hook::call("cart_display_before",$order);
       $display = replace_macros($template, $order);
 
       $hookdata["checkoutdisplay"] = $display;
@@ -319,7 +319,7 @@ class Cart_paypalbutton {
 
 
 
-      call_hooks('cart_calc_totals',$order);
+      Hook::call('cart_calc_totals',$order);
 
       $page_uid = ((App::$profile_uid) ? App::$profile_uid : local_channel());
       $paypal_currency=get_pconfig($page_uid,'cart','cart_currency');
@@ -397,7 +397,7 @@ class Cart_paypalbutton {
 
       cart_do_checkout_before($order);
 
-      call_hooks('cart_calc_totals',$order);
+      Hook::call('cart_calc_totals',$order);
       $page_uid = ((App::$profile_uid) ? App::$profile_uid : local_channel());
       $paypal_currency=get_pconfig($page_uid,'cart','cart_currency');
       $payment["body"]=Array (

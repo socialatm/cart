@@ -20,7 +20,7 @@ class Catalogitem {
 		$id = '';
 		$count = 0;
 		$catalog_items = [];
-		call_hooks('cart_get_catalog',$catalog_items);
+		Hook::call('cart_get_catalog',$catalog_items);
 
 		$catalog_item = [];
 		if (isset($catalog_items[$sku]))

@@ -48,7 +48,7 @@ function cart_myshop_main(&$pagecontent) {
 
 	if (argc() > 3) {
 		$hookname = preg_replace('/[^a-zA-Z0-9\_]/', '', argv(3));
-		call_hooks('cart_myshop_' . $hookname, $rendered);
+		Hook::call('cart_myshop_' . $hookname, $rendered);
 	}
 
 	if ($rendered == '') {
@@ -73,7 +73,7 @@ function cart_myshop_menu() {
 	//$rendered .= "<li><a class='nav-link' href='".$urlroot."/openorders'>Open Orders (".count($openorders).")</a></li>";
 	//$rendered .= "<li><a class='nav-link' href='".$urlroot."/closedorders'>Closed Orders (".count($closedorders).")</a></li>";
 	$rendered .= "<li><a class='nav-link' href='" . $urlroot . "/allorders'>All Orders (" . $ordercount . ")</a></li>";
-	call_hooks('cart_myshop_menufilter', $rendered);
+	Hook::call('cart_myshop_menufilter', $rendered);
 	return '<ul class="nav nav-pills flex-column">' . $rendered . '</ul>';
 }
 
@@ -95,7 +95,7 @@ function cart_myshop_allorders(&$pagecontent) {
 	$templatevalues["orders"]    = cart_myshop_get_allorders(null, 100000, 0);
 	$templatevalues["debug"]     = print_r($templatevalues, true);
 	$templateinfo                = ['name' => 'myshop_orderlist.tpl', 'path' => 'addon/cart/'];
-	call_hooks('cart_filter_myshop_orderlist_template', $templateinfo);
+	Hook::call('cart_filter_myshop_orderlist_template', $templateinfo);
 	$template    = get_markup_template($templateinfo['name'], $templateinfo['path']);
 	$rendered    = replace_macros($template, $templatevalues);
 	$pagecontent = $rendered;
@@ -114,17 +114,17 @@ function cart_myshop_order(&$pagecontent) {
 	}
 	$permission                                 = [];
 	$permissions['manualfilfillment_permitted'] = true;
-	call_hooks('cart_myshop_order_permissions', $permissions);
+	Hook::call('cart_myshop_order_permissions', $permissions);
 	$templatevalues                   = $order;
 	$templatevalues['permissions']    = $permissions;
 	$templatevalues["security_token"] = get_form_security_token();
 
 	$templateinfo = ['name' => 'myshop_order.tpl', 'path' => 'addon/cart/'];
-	call_hooks('cart_filter_myshop_order', $templateinfo);
+	Hook::call('cart_filter_myshop_order', $templateinfo);
 	$template                        = get_markup_template($templateinfo['name'], $templateinfo['path']);
 	$templatevalues['added_display'] = ["order" => $order, "content" => ""];
-	call_hooks('cart_addons_myshop_order_display', $templatevalues['added_display']);
-	call_hooks('cart_addons_myshop_prep_display', $templatevalues);
+	Hook::call('cart_addons_myshop_order_display', $templatevalues['added_display']);
+	Hook::call('cart_addons_myshop_prep_display', $templatevalues);
 	//HOOK: cart_post_myshop_order
 	$rendered    = replace_macros($template, $templatevalues);
 	$pagecontent = $rendered;
@@ -365,7 +365,7 @@ function cart_myshop_aside(&$aside) {
 	//$rendered .= "<li><a class='nav-link' href='".$urlroot."/openorders'>Open Orders (".count($openorders).")</a></li>";
 	//$rendered .= "<li><a class='nav-link' href='".$urlroot."/closedorders'>Closed Orders (".count($closedorders).")</a></li>";
 	$rendered .= "<li><a class='nav-link' href='" . $urlroot . "/allorders'>All Orders (" . $ordercount . ")</a></li>";
-	call_hooks('cart_myshop_menufilter', $rendered);
+	Hook::call('cart_myshop_menufilter', $rendered);
 	$templatevalues["content"] = $rendered;
 	$template                  = get_markup_template('myshop_aside.tpl', 'addon/cart/');
 	$rendered                  = replace_macros($template, $templatevalues);

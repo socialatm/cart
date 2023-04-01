@@ -11,7 +11,7 @@ function cart_post_manual_checkout_confirm () {
 	$order = cart_loadorder($orderhash);
 	cart_do_checkout ($order);
 	cart_do_checkout_after ($order);
-	call_hooks("cart_calc_totals_filter",$order);
+	Hook::call("cart_calc_totals_filter",$order);
 
 	if (intval($order["order_meta"]["totals"]["OrderTotal"]) == 0) {
 	        cart_do_checkout ($order);
@@ -70,7 +70,7 @@ function cart_checkout_manual (&$hookdata) {
 	}
 
 	$order = cart_loadorder($orderhash);
-	call_hooks('cart_calc_totals',$order);
+	Hook::call('cart_calc_totals',$order);
 	$manualpayopts = get_pconfig($page_uid,'cart','manual_payopts');
 	$manualpayopts["order_hash"]=$orderhash;
 	$order["payopts"]=$manualpayopts;
@@ -78,7 +78,7 @@ function cart_checkout_manual (&$hookdata) {
 	$order["finishedurl"]= z_root() . '/cart/' . $nick;
    	$order["links"]["checkoutlink"] = z_root() . '/cart/' . $nick . '/checkout/start?cart='.$order["order_hash"];
         $template = get_markup_template('basic_checkout_manual_confirm.tpl','addon/cart/');
-        call_hooks("cart_display_before",$order);
+        Hook::call("cart_display_before",$order);
 	$display = replace_macros($template, $order);
 
 	$hookdata["checkoutdisplay"] = $display;

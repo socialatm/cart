@@ -149,7 +149,7 @@ class Cart_hzservices {
     $sku = isset($_REQUEST["SKU"]) ? preg_replace("[^a-zA-Z0-9\-]",'',$_REQUEST["SKU"]) : null;
     if ($sku) {
       $pagecontent=Cart_hzservices::itemedit_form($sku);
-      call_hooks('itemedit_formextras',$pagecontent);
+      Hook::call('itemedit_formextras',$pagecontent);
       return;
     }
 

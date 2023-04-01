@@ -255,7 +255,7 @@ function cart_maybejson($value, $options = 0) {
 function cart_dbCleanup() {
 
 	$success = UPDATE_SUCCESS;
-	call_hooks("cart_dbcleanup", $success);
+	Hook::call("cart_dbcleanup", $success);
 	if ($success != UPDATE_SUCCESS) {
 		notice(t("DB Cleanup Failure") . EOL);
 		logger("DB Cleanup Failure in cart-dbcleanup hooks", LOGGER_NORMAL);
@@ -295,7 +295,7 @@ function cart_dbCleanup() {
 		logger('[cart] Error in dbCleanup.', LOGGER_NORMAL);
 	}
 	$response = UPDATE_SUCCESS;
-	call_hooks("cart_dbcleanup", $response);
+	Hook::call("cart_dbcleanup", $response);
 	return $response;
 }
 
@@ -412,7 +412,7 @@ function cart_dbUpgrade() {
 	$response = UPDATE_SUCCESS;
 	logger("CART: run db_upgrade hooks", LOGGER_DEBUG);
 	// load_hooks();
-	// call_hooks("cart_dbupgrade", $response);
+	// Hook::call("cart_dbupgrade", $response);
 	Hook::load();
 	Hook::call("cart_dbupgrade", $response);
 	return $response;
@@ -443,7 +443,7 @@ function cart_loadorder($orderhash) {
 		$order["flags"]["fulfilled"] = false;
 		$order["flags"]              = $flags;
 		$hookdata                    = $order;
-		call_hooks("cart_loadorder", $hookdata);
+		Hook::call("cart_loadorder", $hookdata);
 		return $hookdata;
 	}
 	$items = [];
@@ -462,7 +462,7 @@ function cart_loadorder($orderhash) {
 	$order["items"] = $items;
 	$order["flags"] = $flags;
 	$hookdata       = $order;
-	call_hooks("cart_loadorder", $hookdata);
+	Hook::call("cart_loadorder", $hookdata);
 	return $hookdata;
 }
 
@@ -613,7 +613,7 @@ function cart_do_additem(&$hookdata) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_order_before_additem_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 		unset($calldata["content"]);
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -628,7 +628,7 @@ function cart_do_additem(&$hookdata) {
 	if (!isset($calldata["item"])) {
 		return;
 	}
-	call_hooks('cart_order_before_additem', $calldata);
+	Hook::call('cart_order_before_additem', $calldata);
 
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
@@ -646,7 +646,7 @@ function cart_do_additem(&$hookdata) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_order_additem_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 		unset($calldata["content"]);
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -660,7 +660,7 @@ function cart_do_additem(&$hookdata) {
 	if (!isset($calldata["item"])) {
 		return;
 	}
-	call_hooks('cart_order_additem', $calldata);
+	Hook::call('cart_order_additem', $calldata);
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
 	if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -673,7 +673,7 @@ function cart_do_additem(&$hookdata) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_order_after_additem_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 		unset($calldata["content"]);
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -683,7 +683,7 @@ function cart_do_additem(&$hookdata) {
 			unset($calldata["error"]);
 		}
 	}
-	call_hooks('cart_order_after_additem', $calldata);
+	Hook::call('cart_order_after_additem', $calldata);
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
 	if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -866,7 +866,7 @@ function cart_do_updateitem(&$hookdata) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_order_before_updateitem_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 		unset($calldata["content"]);
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -881,7 +881,7 @@ function cart_do_updateitem(&$hookdata) {
 		return;
 	}
 
-	call_hooks('cart_order_before_updateitem', $calldata);
+	Hook::call('cart_order_before_updateitem', $calldata);
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
 	if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -898,7 +898,7 @@ function cart_do_updateitem(&$hookdata) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_order_updateitem_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 		unset($calldata["content"]);
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -913,7 +913,7 @@ function cart_do_updateitem(&$hookdata) {
 		return;
 	}
 
-	call_hooks('cart_order_updateitem', $calldata);
+	Hook::call('cart_order_updateitem', $calldata);
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
 	if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -925,7 +925,7 @@ function cart_do_updateitem(&$hookdata) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_order_after_updateitem_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 		unset($calldata["content"]);
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -935,7 +935,7 @@ function cart_do_updateitem(&$hookdata) {
 			unset($calldata["error"]);
 		}
 	}
-	call_hooks('cart_order_after_updateitem', $calldata);
+	Hook::call('cart_order_after_updateitem', $calldata);
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
 	if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -989,7 +989,7 @@ function cart_calc_totals(&$hookdata) {
 	*/
 	//Preserve order_meta from overwriting by filter
 	$ordermeta = $order["order_meta"];
-	call_hooks("cart_calc_totals_filter", $order);
+	Hook::call("cart_calc_totals_filter", $order);
 	//Import results of the totals_filter
 	$ordermeta["totals"] = $order["order_meta"]["totals"];
 	//Save order meta data with new totals
@@ -1067,7 +1067,7 @@ function cart_do_checkout_before(&$hookdata) {
 
 		if ($itemtype) {
 			$itemtypehook = 'cart_before_checkout_' . $itemtype;
-			call_hooks($itemtypehook, $calldata);
+			Hook::call($itemtypehook, $calldata);
 			$hookdata["content"] = isset($calldata["content"]) ? $calldata["content"] : '';
 			unset($calldata["content"]);
 			if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -1083,7 +1083,7 @@ function cart_do_checkout_before(&$hookdata) {
 		$order = cart_loadorder($orderhash);
 		unset($calldata);
 		$calldata = ['order_hash' => $orderhash, 'error' => null];
-		call_hooks('cart_before_checkout', $calldata);
+		Hook::call('cart_before_checkout', $calldata);
 		$hookdata["content"] = isset($calldata["content"]) ? $calldata["content"] : '';
 		if (isset($calldata["error"]) && $calldata["error"] != null) {
 			$hookdata["content"]        = $startcontent;
@@ -1114,7 +1114,7 @@ function cart_do_checkout(&$hookdata) {
 
 	unset($calldata);
 	$calldata = ['order_hash' => $orderhash];
-	call_hooks('cart_checkout', $calldata);
+	Hook::call('cart_checkout', $calldata);
 	return;
 }
 
@@ -1139,13 +1139,13 @@ function cart_do_checkout_after(&$hookdata) {
 		$itemtype = isset($calldata['item']['item_type']) ? $calldata['item']['item_type'] : null;
 		if ($itemtype) {
 			$itemtypehook = 'cart_after_checkout_' . $itemtype;
-			call_hooks($itemtypehook, $calldata);
+			Hook::call($itemtypehook, $calldata);
 		}
 		unset($calldata);
 	}
 
 	$calldata = ['order_hash' => $orderhash];
-	call_hooks('cart_after_checkout', $calldata);
+	Hook::call('cart_after_checkout', $calldata);
 
 	return;
 }
@@ -1182,7 +1182,7 @@ function cart_do_orderpaid(&$hookdata) {
 
 		if ($itemtype) {
 			$itemtypehook = 'cart_orderpaid_' . $itemtype;
-			call_hooks($itemtypehook, $calldata);
+			Hook::call($itemtypehook, $calldata);
 			$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 			unset($calldata["content"]);
 			if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -1194,7 +1194,7 @@ function cart_do_orderpaid(&$hookdata) {
 
 	unset($calldata);
 	$calldata = ['order' => $order, 'payment' => $payment, "error" => null, "content" => null];
-	call_hooks('cart_orderpaid', $calldata);
+	Hook::call('cart_orderpaid', $calldata);
 	$hookdata["content"] .= isset($calldata["content"]) ? $calldata["content"] : '';
 	unset($calldata["content"]);
 	if (isset($calldata["error"]) && $calldata["error"] != null) {
@@ -1336,7 +1336,7 @@ function cart_load() {
 		$moduleclass = 'Cart_' . $module;
 		$moduleclass::load();
 	}
-	call_hooks('cart_submodule_activation');
+	Hook::call('cart_submodule_activation');
 	cart_dbupgrade();
 }
 
@@ -1361,7 +1361,7 @@ function cart_unload() {
 		$moduleclass = 'Cart_' . $module;
 		$moduleclass::unload();
 	}
-	call_hooks('cart_submodule_deactivation');
+	Hook::call('cart_submodule_deactivation');
 	cart_delsysconfig("itemtypes");
 }
 
@@ -1373,7 +1373,7 @@ function cart_getcurrencies() {
 	$currencylist = file_get_contents(dirname(__FILE__) . '/currencycodes.json');
 	$currencylist = cart_maybeunjson($currencylist);
 
-	call_hooks('cart_currency_filter', $currencylist);
+	Hook::call('cart_currency_filter', $currencylist);
 	return $currencylist;
 }
 
@@ -1481,14 +1481,14 @@ function cart_post_add_item() {
 		return;
 	}
 	$items = [];
-	call_hooks('cart_get_catalog', $items);
+	Hook::call('cart_get_catalog', $items);
 	$item_sku            = preg_replace('[^0-9A-Za-z\-]', '', $_POST["add"]);
 	$newitem             = $items[$item_sku];
 	$qty                 = isset($_POST["qty"]) ? preg_replace('[^0-9\.]', '', $_POST['qty']) : 1;
 	$newitem["item_qty"] = $qty;
 
 	$hookdata = ["content" => '', "iteminfo" => $newitem];
-	call_hooks('cart_do_additem', $hookdata);
+	Hook::call('cart_do_additem', $hookdata);
 
 }
 
@@ -1506,7 +1506,7 @@ function cart_post_update_item() {
 			continue;
 		}
 		$hookdata = ["content" => '', "itemid" => $itemid, "iteminfo" => $item];
-		call_hooks('cart_do_updateitem', $hookdata);
+		Hook::call('cart_do_updateitem', $hookdata);
 	}
 }
 
@@ -1536,11 +1536,11 @@ function cart_post(&$a) {
 		if (argv(2) == "custom") {
 			$cart_formname = argv(3);
 			$formhook      = "cart_post_custom_" . $cart_formname;
-			call_hooks($formhook);
+			Hook::call($formhook);
 			exit;
 		}
 	}
-	call_hooks($formhook);
+	Hook::call($formhook);
 
 	if ($_GET['returnurl']) {
 		goaway(urldecode($_GET['returnurl']));
@@ -1568,7 +1568,7 @@ function cart_mod_content(&$arr) {
 	$arr['content'] = cart_pagecontent($a);
 
 	$aside = '';
-	call_hooks('cart_aside_filter', $aside);
+	Hook::call('cart_aside_filter', $aside);
 	\App::$page['aside'] = $aside;
 
 	$arr['replace'] = true;
@@ -1577,17 +1577,17 @@ function cart_mod_content(&$arr) {
 
 function cart_get_catalog($filtered = true) {
 	$items = [];
-	call_hooks('cart_get_catalog', $items);
+	Hook::call('cart_get_catalog', $items);
 	if ($filtered) {
-		call_hooks('cart_filter_catalog_display', $items);
+		Hook::call('cart_filter_catalog_display', $items);
 	}
 	return $items;
 }
 
 function cart_do_display($order) {
-	call_hooks('cart_display_before', $order);
-	call_hooks('cart_display', $order);
-	call_hooks('cart_display_after', $order);
+	Hook::call('cart_display_before', $order);
+	Hook::call('cart_display', $order);
+	Hook::call('cart_display_after', $order);
 	return ($order["content"]);
 }
 
@@ -1659,8 +1659,8 @@ function cart_pagecontent($a = null) {
 	if ((argc() >= 3) && (argv(2) == 'catalog')) {
 		$items = [];
 
-		call_hooks('cart_get_catalog', $items);
-		call_hooks('cart_filter_catalog_display', $items);
+		Hook::call('cart_get_catalog', $items);
+		Hook::call('cart_filter_catalog_display', $items);
 
 		$total_qty = 0;
 		$orderhash = cart_getorderhash(false);
@@ -1684,7 +1684,7 @@ function cart_pagecontent($a = null) {
 		}
 
 		$templateinfo = ['name' => 'basic_catalog.tpl', 'path' => 'addon/cart/'];
-		call_hooks('cart_filter_catalogtemplate', $templateinfo);
+		Hook::call('cart_filter_catalogtemplate', $templateinfo);
 		$template = get_markup_template($templateinfo['name'], $templateinfo['path']);
 		return replace_macros($template, [
 			'$items'      => $items,
@@ -1707,7 +1707,7 @@ function cart_pagecontent($a = null) {
 
 		$hookname                 = 'cart_checkout_' . argv(3);
 		$order["checkoutdisplay"] = '';
-		call_hooks($hookname, $order);
+		Hook::call($hookname, $order);
 		if ($order["checkoutdisplay"] == '' && argc(3) != 'start') {
 			notice(t("An unknown error has occurred Please start again.") . EOL);
 			goaway(z_root() . '/cart/' . $sellernick . '/checkout/start');
@@ -1717,14 +1717,14 @@ function cart_pagecontent($a = null) {
 
 	$menu           = '';
 	$templatevalues = ["menu" => $menu];
-	call_hooks('cart_mainmenu_filter', $templatevalues);
+	Hook::call('cart_mainmenu_filter', $templatevalues);
 
 	$template = get_markup_template('menu.tpl', 'addon/cart/');
 	$page     = replace_macros($template, $templatevalues);
 
 	if ((argc() > 2)) {
 		$hookname = preg_replace('/[^a-zA-Z0-9\_]/', '', argv(2));
-		call_hooks('cart_main_' . $hookname, $page);
+		Hook::call('cart_main_' . $hookname, $page);
 	}
 	return $page;
 
@@ -1743,9 +1743,9 @@ function cart_display_before_formatcurrency(&$order) {
 
 function cart_display_applytemplate(&$order) {
 	$templateinfo = ['name' => 'basic_cart.tpl', 'path' => 'addon/cart/'];
-	call_hooks('cart_filter_carttemplate', $templateinfo);
+	Hook::call('cart_filter_carttemplate', $templateinfo);
 	$template = get_markup_template($templateinfo['name'], $templateinfo['path']);
-	call_hooks('cart_show_order_filter', $cart_template);
+	Hook::call('cart_show_order_filter', $cart_template);
 	$order["content"] = replace_macros($template, $order);
 }
 
@@ -1803,12 +1803,12 @@ function cart_get_order_total_qty($orderhash) {
 
 function cart_checkout_pay(&$hookdata) {
 
-	call_hooks("cart_before_payment", $hookdata);
+	Hook::call("cart_before_payment", $hookdata);
 
 	if ($hookdata["checkoutdisplay"] == '') {
 		$paytype     = $hookdata["order_meta"]["paytype"];
 		$paymentopts = [];
-		call_hooks('cart_paymentopts', $paymentopts);
+		Hook::call('cart_paymentopts', $paymentopts);
 		$hookdata["paymentopts"] = $paymentopts;
 		if (!isset($paymentopts[$paytype])) {
 			notice("Unknown Payment Type.  Please try again." . EOL);
@@ -1824,7 +1824,7 @@ function cart_checkout_start(&$hookdata) {
 	cart_do_checkout_before($hookdata);
 
 	$paymentopts = [];
-	call_hooks('cart_paymentopts', $paymentopts);
+	Hook::call('cart_paymentopts', $paymentopts);
 	/*
 	 * @todo: filter $paymentopts by "enabled" & properly configured payment options
 	 */
@@ -1853,8 +1853,8 @@ function cart_checkout_start(&$hookdata) {
 	$hookdata["order_meta"]                           = $ordermeta;
 	$hookdata["readytopay"]                           = 1;
 	$hookdata['text']['readytopayrequirementsnotmet'] = t('Requirements not met.') . ' ' . t('Review your order and complete any needed requirements.');
-	call_hooks('cart_before_checkout', $hookdata);
-	call_hooks('cart_display_before', $hookdata);
+	Hook::call('cart_before_checkout', $hookdata);
+	Hook::call('cart_display_before', $hookdata);
 
 	$template = get_markup_template('basic_checkout_start.tpl', 'addon/cart/');
 
@@ -1866,7 +1866,7 @@ function cart_checkout_start(&$hookdata) {
 	$display = replace_macros($template, $hookdata);
 
 	$hookdata["checkoutdisplay"] = $display;
-	call_hooks('cart_checkout_start_filter', $hookdata);
+	Hook::call('cart_checkout_start_filter', $hookdata);
 	return $hookdata["checkoutdisplay"];
 }
 
@@ -1874,7 +1874,7 @@ function cart_post_choose_payment() {
 
 	if (isset($_POST["paymenttypeslug"])) {
 		$paymentopts = [];
-		call_hooks('cart_paymentopts', $paymentopts);
+		Hook::call('cart_paymentopts', $paymentopts);
 		$hookdata["paymentopts"] = $paymentopts;
 		$payslug                 = preg_replace("/[^a-zA-Z0-9\-_]/", '', $_POST["paymenttypeslug"]);
 		if (!isset($paymentopts[$payslug])) {
@@ -1939,7 +1939,7 @@ function cart_do_fulfillitem($iteminfo) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_before_fulfill_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		if (isset($calldata["error"])) {
 			$hookdata["error"] = $calldata["error"];
 			cart_fulfillitem_error($calldata["error"], $iteminfo["id"], $iteminfo["order_hash"]);
@@ -1947,7 +1947,7 @@ function cart_do_fulfillitem($iteminfo) {
 		}
 	}
 
-	call_hooks('cart_before_fulfill', $calldata);
+	Hook::call('cart_before_fulfill', $calldata);
 	if (isset($calldata["error"])) {
 		$hookdata["error"] = $calldata["error"];
 		cart_fulfillitem_error($calldata["error"], $iteminfo["id"], $iteminfo["order_hash"]);
@@ -1956,11 +1956,11 @@ function cart_do_fulfillitem($iteminfo) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_fulfill_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 	}
 
 	$calldata["fulfillment_errors"] = [];
-	call_hooks('cart_order_fulfill', $calldata);
+	Hook::call('cart_order_fulfill', $calldata);
 	foreach ($calldata["fulfillment_errors"] as $error) {
 		if (is_array($error)) {
 			cart_fulfillitem_error(print_r($error, true), $iteminfo["id"], $iteminfo["order_hash"]);
@@ -1972,10 +1972,10 @@ function cart_do_fulfillitem($iteminfo) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_after_fulfill_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 	}
 
-	call_hooks('cart_after_fulfill', $calldata);
+	Hook::call('cart_after_fulfill', $calldata);
 }
 
 function cart_do_cancelitem($iteminfo) {
@@ -1995,14 +1995,14 @@ function cart_do_cancelitem($iteminfo) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_before_cancel_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 		if (isset($calldata["error"])) {
 			$hookdata["error"] = $calldata["error"];
 			cart_fulfillitem_error($calldata["error"], $iteminfo["id"], $iteminfo["order_hash"]);
 			return;
 		}
 	}
-	call_hooks('cart_before_cancel', $calldata);
+	Hook::call('cart_before_cancel', $calldata);
 	if (isset($calldata["error"])) {
 		$hookdata["error"] = $calldata["error"];
 		cart_fulfillitem_error($calldata["error"], $iteminfo["id"], $iteminfo["order_hash"]);
@@ -2011,11 +2011,11 @@ function cart_do_cancelitem($iteminfo) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_cancel_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 	}
 
 	$calldata["rollback_errors"] = [];
-	call_hooks('cart_order_cancel', $calldata);
+	Hook::call('cart_order_cancel', $calldata);
 	foreach ($calldata["rollback_errors"] as $error) {
 		if (is_array($error)) {
 			cart_fulfillitem_error(print_r($error, true), $iteminfo["id"], $iteminfo["order_hash"]);
@@ -2027,10 +2027,10 @@ function cart_do_cancelitem($iteminfo) {
 
 	if ($itemtype) {
 		$itemtypehook = 'cart_after_cancel_' . $itemtype;
-		call_hooks($itemtypehook, $calldata);
+		Hook::call($itemtypehook, $calldata);
 	}
 
-	call_hooks('cart_after_cancel', $calldata);
+	Hook::call('cart_after_cancel', $calldata);
 }
 
 function cart_fulfillitem_markfulfilled(&$hookdata) {
@@ -2123,7 +2123,7 @@ function cart_after_fulfill_finishorder(&$hookdata) {
 	}
 
 	$calldata = ['orderhash' => $orderhash];
-	call_hooks('cart_after_orderfulfilled', $calldata);
+	Hook::call('cart_after_orderfulfilled', $calldata);
 }
 
 

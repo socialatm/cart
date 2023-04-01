@@ -18,7 +18,7 @@ class Cart {
 			return;
 		}
 
-		call_hooks('cart_addon_settings_morepanels_post');
+		Hook::call('cart_addon_settings_morepanels_post');
 logger("morepanels done");
 		check_form_security_token_redirectOnErr('/settings/cart', 'cart');
 
@@ -31,7 +31,7 @@ logger("morepanels done");
 		$currencylist=cart_getcurrencies();
 		$currency = isset($currencylist[$currency]) ? $currency : 'USD';
 		set_pconfig(local_channel(), 'cart','cart_currency', $currency);
-		call_hooks('cart_addon_settings_post');
+		Hook::call('cart_addon_settings_post');
 		    
 
 		cart_unload();
@@ -98,18 +98,18 @@ logger("morepanels done");
 		* @TODO: Set payment options order
 		* @TODO: Enable/Disable payment options
 		* $paymentopts = Array();
-		* call_hooks('cart_paymentopts',$paymentopts);
+		* Hook::call('cart_paymentopts',$paymentopts);
 		* @TODO: Configuure payment options
 		*/
 
 		$moresettings = '';
-		call_hooks('cart_addon_settings',$moresettings);
+		Hook::call('cart_addon_settings',$moresettings);
 		$morepanels = [];
 		/*
 		*  order - int - general priority of panels (lower appears first)
 		*  html - string - html for block
 		*/
-		call_hooks('cart_addon_settings_morepanels',$morepanels);
+		Hook::call('cart_addon_settings_morepanels',$morepanels);
 		usort($morepanels,function($a,$b) {
 			$left = isset($a['order']) ? $a['order'] : 30000;
 			$right = isset($b['order']) ? $b['order'] : 30000;
