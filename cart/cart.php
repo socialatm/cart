@@ -410,8 +410,10 @@ function cart_dbUpgrade() {
 	}
 	$response = UPDATE_SUCCESS;
 	logger("CART: run db_upgrade hooks", LOGGER_DEBUG);
-	load_hooks();
-	call_hooks("cart_dbupgrade", $response);
+	// load_hooks();
+	// call_hooks("cart_dbupgrade", $response);
+	Hook::load();
+	Hook::call("cart_dbupgrade", $response);
 	return $response;
 }
 
